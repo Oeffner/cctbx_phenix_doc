@@ -39,11 +39,22 @@
   <p>
     The HKLviewer consists of a 3-dimensional graphics rendering window together with the HKLviewer controls. The HKLviewer
     controls consists of two tabs, "Quick View" and "Details", together with a text area for information being emitted
-    during usage. Additional tabs may be added in future versions of the HKLviewer. The HKLviewer controls may be torn
-    off and floated from the main window using the mouse.
+    during usage. The HKLviewer controls can be torn off and floated from the main window or docked in a different
+    orientation with the mouse. The layout and the settings customised by the user will be persisted next time the HKLviewer
+is started.
 
   </p>
   <img style="max-width: 100%;" src="{% static 'cctbx/img/hklviewer/LookFeel.png' %}">
+
+  <h4>Background colour</h4>
+  The background colour of the graphics rendering window can be adjusted from the background colour menu item from the 
+  File menu.
+
+  <h4>HKLviewer Settings dialog</h4>
+  The "HKLviewer Settings" dialog that is invoked from the "File|Settings" (or Preferences) menu item lets you adjust
+  the mouse speed and the font size for the QtGui as well as for the legends and tooltips displayed for the 3D view (Browser).
+  Tooltips can be set to only pop up when a reflection is clicked.
+
 
   <!----------------------------------------------------------------------------->
 
@@ -62,6 +73,32 @@
   </p>
 
   <!----------------------------------------------------------------------------->
+
+  <h3 class="mt-4">Integration with other programs</h3>
+
+  <h4>Xtriage</h4>
+    Xtriage is also a part of the CCTBX and Phenix. An amplitude or intensity dataset that is displayed in the
+    HKLviewer can be processed with Xtriage by clicking on the "Xtriage" button on top on the "Quick View" tab
+    of the HKLviewer controls. Once it has finished a log file from the Xtriage run will be present in the bottom 
+    of the HKLviewer controls as an additional tab. 
+
+    If the dataset is likely to be twinned Xtriage will emit a list of possible twin operators which the HKLviewer 
+    then makes accessible as buttons below on the "Quick View" tab as well as on the Vectors tab found on the 
+    Details tab. A description on how to inspect a twin law is given in the tutorials section.
+  
+
+
+  <h4>XDSGUI</h4>
+    The HKLviewer can be integrated with the
+    <a href="https://strucbio.biologie.uni-konstanz.de/xdswiki/index.php/Main_Page">XDSGUI</a> to make it easy to visualise
+    and inspect newly integrated datasets. This is a lightweight implementation that relies on the presence of a Phenix 
+    installation. Then the command-line to the HKLviewer needs to be specified in the XDSGUI and it will persists between
+    sessions of running XDSGUI. The command line that needs to be entered in the XDSGUI is the following:
+<pre class="CodeGreen"><code>source &lt;path/to/phenix-installation&gt;/phenix_env.sh; cctbx.HKLviewer XDS_ASCII.HKL</code></pre>
+    In the XDSGUI this should be entered under the button labelled "User defined command 3" found on the "Further analyses" 
+    part of the "tools" tab as illustrated on the screenshot of the 
+    <a href="{% static 'cctbx/img/hklviewer/XDSGUIscreenshot.jpg' %}">XDSGUI with the HKLviewer here</a>.
+
 
   <h3 class="mt-4">Predefined buttons</h3>
   <p>
@@ -494,10 +531,10 @@
     operator we defined above this is shown below where a
     slice has been made at l=0 and reflections have been expanded to P1 and Friedel mates. This is useful when
     inspecting twin related reflections as discussed in the
-    <a href="../tuto_hklviewer/#inspecting-a-twin-law">tutorial section</a>.
+    <a href="../tuto_hklviewer/#inspecting_a_twin_law">tutorial section</a>.
   </p>
 
-  <img style="max-width: 80%;" src="{% static 'cctbx/img/hklviewer/doc_hklviewer_017.png' %}">
+  <img style="max-width: 100%;" src="{% static 'cctbx/img/hklviewer/doc_hklviewer_017.png' %}">
 
   <p class="mt-3">
     It is also possible to enter a reciprocal space vector. To do this first overwrite the "new name"
