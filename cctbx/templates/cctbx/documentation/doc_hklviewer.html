@@ -73,61 +73,39 @@ is started.
   </p>
 
   <!----------------------------------------------------------------------------->
-
-  <h3 class="mt-4">Integration with other programs</h3>
-
-  <h4>Xtriage</h4>
-    Xtriage is also a part of the CCTBX and Phenix. An amplitude or intensity dataset that is displayed in the
-    HKLviewer can be processed with Xtriage by clicking on the "Xtriage" button on top on the "Quick View" tab
-    of the HKLviewer controls. Once it has finished a log file from the Xtriage run will be present in the bottom 
-    of the HKLviewer controls as an additional tab. 
-
-    If the dataset is likely to be twinned Xtriage will emit a list of possible twin operators which the HKLviewer 
-    then makes accessible as buttons below on the "Quick View" tab as well as on the Vectors tab found on the 
-    Details tab. A description on how to inspect a twin law is given in the tutorials section.
-  
-
-
-  <h4>XDSGUI</h4>
-    The HKLviewer can be integrated with the
-    <a href="https://strucbio.biologie.uni-konstanz.de/xdswiki/index.php/Main_Page">XDSGUI</a> to make it easy to visualise
-    and inspect newly integrated datasets. This is a lightweight implementation that relies on the presence of a Phenix 
-    installation. Then the command-line to the HKLviewer needs to be specified in the XDSGUI and it will persists between
-    sessions of running XDSGUI. The command line that needs to be entered in the XDSGUI is the following:
-<pre class="CodeGreen"><code>source &lt;path/to/phenix-installation&gt;/phenix_env.sh; cctbx.HKLviewer XDS_ASCII.HKL</code></pre>
-    In the XDSGUI this should be entered under the button labelled "User defined command 3" found on the "Further analyses" 
-    part of the "tools" tab as illustrated on the screenshot of the 
-    <a href="{% static 'cctbx/img/hklviewer/XDSGUIscreenshot.jpg' %}">XDSGUI with the HKLviewer here</a>.
-
-
   <h3 class="mt-4">Predefined buttons</h3>
   <p>
     The "Quick View" tab contains several predefined radio buttons such as "Show Amplitudes",
-    "Show plane of Intensities with constant H", "I/SigI" and others. Those buttons provide a quick way
-    to the typical ways of displaying reflections from a loaded reflection file.
+    "Show plane of Intensities with constant H", "F/SigF", "I/SigI>=2", "E-values", "Merged Intensities" and 
+    "Multiplicities". Those buttons provide a quick way to the typical ways of displaying reflections from a 
+    loaded reflection file. 
   </p>
-  <img style="max-width: 75%;" src="{% static 'cctbx/img/hklviewer/presetbuttons.png' %}">
-
+  <img style="max-width: 80%;" src="{% static 'cctbx/img/hklviewer/presetbuttons.png' %}">
+  <p/>
+  Depending on what datasets are present not all of those buttons will show up. 
+  The "I/SigI>=2", "Merged Intensities" and "Multiplicities" will only be available if there is an intensity 
+  dataset in the file. 
+  <p/>
+  
   <!----------------------------------------------------------------------------->
-
-  <h3 class="mt-4">How to display amplitudes, intensities, slices of reflections</h3>
+  <h4 class="mt-4">How to display amplitudes, intensities, slices of reflections</h4>
   <p>
     The first dataset of type "Intensities" in the loaded file can be displayed by pressing the "Show Intensities" button.
     HKLviewer first looks for a dataset labelled "I,SIGI" and associates that
-    with the "Show Amplitudes" button. Failing that, it will look for a dataset of type "Amplitudes" and use that instead.
-    If such a dataset this is still not found the button will be disabled. The same protocol applies to the "Show Amplitudes button"
-    where it is looking for the dataset "FOBS,SIGFOBS".
+    with the "Show Intensities" button. Failing that, it will look for a dataset of type "Intensity" and use that instead.
+    If such a dataset this is still not found the button will not be shown. The same applies to the "Show Amplitudes button"
+    where it is looking for the dataset "FOBS,SIGFOBS" or a dataset of type "Amplitude".
   </p>
   <p>
     Slices of reflections at constant H, K or L can be displayed by pressing one of the "Show plane of intensities"
-    or "Show plane of amplitudes"
-    buttons. HKLviewer will expand intensities or amplitudes data to P1 and Friedel mates. A slice of reflections in reciprocal
+    or "Show plane of amplitudes" buttons and then selecting H,K or L-axis from the drop-down list. 
+    HKLviewer will expand intensities or amplitudes data to P1 and Friedel mates. The slice of reflections in reciprocal
     space is obtained by imposing two clip planes perpendicular to the Z-axis on both sides of the origin. Only reflections
     in between the clip planes are visible. HKLviewer then orients the reciprocal space so in case of showing a plane of
     reflections with constant L, the real space vector associated with the L axis is normal to the clip planes, i.e. parallel
     to the Z-axis. The plane of visible reflections is indicated with the equation shown in the bottom of the graphics window.
     Plus/Minus bottons are available for stepping through the layers of reflections. The clip planes are always oriented
-    perpendicular to the Z axis. Arbitrary
+    perpendicular to the Z-axis. Arbitrary
     <a href="#how-to-slice-reflections-with-arbitrarily-oriented-clip-planes">orientation of clip planes relative to the displayed reflections</a>
     is also possible.
   </p>
@@ -139,24 +117,30 @@ is started.
   </p>
   <!----------------------------------------------------------------------------->
 
-  <h3 class="mt-4">I/SigI, F/SigF and E-values</h3>
+  <h4 class="mt-4">I/SigI>=2, F/SigF, E-values, Merged Intensities and Multiplicities</h4>
   <p>
     For a dataset containing intensity data or amplitude data new datasets can be calculated on the fly containing the
-    data values divided by their asssociated sigma values, i.e. I/SigI or F/SigF. These are common indicators of the
-    strength of the data.
+    data values divided by their asssociated sigma values, i.e. I/SigI>=2 or F/SigF. These are common indicators of the
+    strength of the data. Reflections with I/SigI>=2 is a typical criterion for what constitutes reliable data values.
+    This can be changed to a different value on the Binning tab on the Details tab once the "I/SigI>=2" data
+    is displayed.
   <p />
   <p>
     E-values i.e. normalised amplitudes can also be calculated on the fly with a button press. E-values are computed according to
     the the normalize() function found here
-    <a href="https://cctbx.github.io/cctbx/cctbx.miller.html#the-miller-array">cctbx.miller.array</a>. Anisotropic or tNCS
+    <a href="https://cctbx.github.io/cctbx/cctbx.miller.html#cctbx.miller.array.normalize">cctbx.miller.array</a>. Anisotropic or tNCS
     correction is not applied.
-  </p>
-  <p>
-    Press the I/SigI, F/SigF or E-values button to display this new data.
+    This rescales amplitudes by inverting B-factor and scattering factor attenuation
+    to make all reflections regardless of resolution shell appear on average to have the same strength.
+    <p/>
+    Given an unmerged dataset of intensities, the "Merged Intensities" button will merge the symmetry-related 
+    reflections (keeping anomalous flag). The "Multiplicities" button will emit a dataset of integers counting the
+    how many symmetry related reflections was used to produce a reflection in the merged array.
+
   </p>
   <!----------------------------------------------------------------------------->
 
-  <h3 class="mt-4">User defined buttons</h3>
+  <h4 class="mt-4">User defined buttons</h4>
   <p>
     It is also possible to add your own
     customised buttons to the Quick View tab. Customised buttons are defined in the file
@@ -208,8 +192,7 @@ is started.
     A unique stringID, say "FriedelBtn" as wells as a text string to display next to the button,
     say "Expand Friedel pairs", must also be provided.
     <a name="hkl_viewer_buttons_py_file"></a>
-    These two tuple elements come before the PHIL parameters
-    string. The file also contains a tuple defining a button for displaying sigmas of an intensity dataset.
+    These two tuple elements come before the PHIL parameters string. 
   </p>
 
 
@@ -217,8 +200,8 @@ is started.
 
   <p>
     When the HKLviewer is restarted with this file present as .hkl_viewer_buttons.py in the user's HOME directory
-    the two buttons will appear on the "Quick View" tab encircled with a green pen as
-    illustrated below.
+    buttons defined in this file will appear on the "Quick View" tab encircled with a green pen as
+    illustrated below. Besides the "Expand Friedel pairs" button a "Show SigI" button has also been defined and is shown.
   </p>
 
   <img style="max-width: 70%;" src="{% static 'cctbx/img/hklviewer/user_preset_btn_loaded.png' %}">
@@ -230,6 +213,55 @@ is started.
 
   <!----------------------------------------------------------------------------->
 
+  <h3 class="mt-4">Integration with other programs</h3>
+
+  <h4>Xtriage</h4>
+    Xtriage is also a part of the CCTBX and Phenix. An amplitude or intensity dataset that is displayed in the
+    HKLviewer can be processed with Xtriage by clicking on the "Xtriage" button on top on the "Quick View" tab
+    of the HKLviewer controls. Once it has finished a log file from the Xtriage run will be present in the bottom 
+    of the HKLviewer controls as an additional tab. 
+
+    If the dataset is likely to be twinned Xtriage will emit a list of possible twin operators which the HKLviewer 
+    then makes accessible as buttons below on the "Quick View" tab as well as on the Vectors tab found on the 
+    Details tab. The twin operator which Xtriage computes to have the lowest R-obs value is usually the most interesting.
+    It is found in the list of twin operators in the Xtriage tab and matches one of the rotation operators on the 
+    Vectors tab found on the Details tab.
+    <p/>
+    <img style="max-width: 100%;" src="{% static 'cctbx/img/hklviewer/Xtriagebuttons.png' %}">
+    <p/>
+    A tutorial on how to inspect a twin law is given in the <a href="../tuto_hklviewer/#inspecting_a_twin_law">tutorial section</a>.
+  
+
+  <h4>Xtricorder</h4>
+    Xtricorder is part  <a href="https://doi.org/10.1107/S2059798320014746">Phasertng</a> distributed within the 
+    Phenix and the CCP4 suite. Pressing the Xtricorder button it will analyse an mtz file in several ways
+    and produces an output file with several additional columns. This output file will subsequently be loaded in
+    the HKLviewer. The most interesting new columns are the INFO, the ANISO and the TEPS columns. These columns
+    are the information content of each reflection, the anisotropy correction terms and the TNCS correction
+    terms, respectively. The TEPS column may not be present if no significant TNCS modulation is detected in the intensities.
+    The INFO column will be absent if the original mtz file only contained amplitudes and not intensities.
+    Once the mtz file produced by Xtricorder has been loaded the HKLviewer will display some new buttons on the Quick View
+    tab. 
+    <p/>
+    <img style="max-width: 75%;" src="{% static 'cctbx/img/hklviewer/Xtricorderbuttons.png' %}">
+  <p/>
+    These are buttons are for visualising reflections with information content less than 0.35 bits, for
+    for visualising anisotropy and for visualising TNCS correction terms.
+    A tutorial on how to inspect TNCS modulation in a dataset is given in the 
+    <a href="../tuto_hklviewer/#inspecting-tncs-modulation-in-a-dataset">tutorial section</a>.
+
+  <h4>XDSGUI</h4>
+    The HKLviewer can be integrated with the
+    <a href="https://strucbio.biologie.uni-konstanz.de/xdswiki/index.php/Main_Page">XDSGUI</a> to make it easy to visualise
+    and inspect newly integrated datasets. This is a lightweight implementation that relies on the presence of a Phenix 
+    installation. Then the command-line to the HKLviewer needs to be specified in the XDSGUI and it will persists between
+    sessions of running the XDSGUI. The command line that needs to be entered in the XDSGUI is the following:
+<pre class="CodeGreen"><code>source &lt;path/to/phenix-installation&gt;/phenix_env.sh; cctbx.HKLviewer XDS_ASCII.HKL</code></pre>
+    In the XDSGUI this should be entered under the button labelled "User defined command 3" found on the "Further analyses" 
+    part of the "tools" tab as illustrated on the screenshot of the 
+    <a href="{% static 'cctbx/img/hklviewer/XDSGUIscreenshot.jpg' %}">XDSGUI with the HKLviewer here</a>.
+
+
   <h3 class="mt-4">How to display other reflection datasets</h3>
 
   <p>
@@ -240,7 +272,7 @@ is started.
 
   <!----------------------------------------------------------------------------->
 
-  <h3 class="mt-4">How to display sigmas</h3>
+  <h4 class="mt-4">How to display sigmas</h4>
 
   <p>
     If a dataset contains sigmas associated to amplitudes or intensities, say it is labelled as
@@ -253,7 +285,12 @@ is started.
 
   <!----------------------------------------------------------------------------->
 
-  <h3 class="mt-4">How to change colour mapping</h3>
+  <h3 class="mt-4">Customising appearance of a particular type of dataset</h3>
+  HKLviewer comes with default schemes for displaying different data types in of colours and sizes of
+  the displayed reflections. These can be customised by the user and the settings will be persisted 
+  next time the HKLviewer is started. 
+
+  <h4 class="mt-4">How to change colour mapping</h4>
 
   <p>
     The reflections are coloured according to
@@ -290,7 +327,37 @@ is started.
 
   <!----------------------------------------------------------------------------->
 
-  <h3 class="mt-5">Displaying map coefficients</h3>
+  <h4 class="mt-5">How to change size of displayed reflections</h4>
+
+  <p>
+    The size of each reflection is a function of its associated data value. Similar to colour mapping
+    of data values a function is employed that produces a radius, \(r\), dependent on the data value, \(x\), and
+    a power scale factor, \(p\).
+  </p>
+
+  \begin{equation}
+  r(x) = ((x-x_{min})/(x_{max} - x_{min}))^p
+  \end{equation}
+
+  where \(x_{min} \) and \(x_{max}\) are the minimum and maximum data values found in the data set. The power
+  scale factor can either be selected by the user or be determined atuomatically.</p>
+
+  <img style="max-width: 50%;" src="{% static 'cctbx/img/hklviewer/doc_hklviewer_006.png' %}">
+
+  <p class="mt-3">
+    For amplitudes or intensities where often there are orders of magnitude difference between
+    the smallest and the largest data values it can be helpful to adjust the power scale factor to make all
+    reflections the same size, \(p=0\), to ensure all recorded reflections are visible. Alternatively,
+    to get a better view of the strength of the data an automatic power scale factor can be selected which
+    will render the weakest reflections ten times smaller than the strongest reflections. When displaying sigmas of
+    intensities or amplitudes this is reversed so that selecting automatic power scale factor will render the
+    reflections with the smallest sigma ten times the size of the reflection with the largest sigma.
+  </p>
+
+  <!----------------------------------------------------------------------------->
+
+
+  <h4 class="mt-5">Displaying map coefficients</h4>
 
   <p>
     For data with map coeffficients or phases only the phase value (modulo 360) is used for the colour mapping.
@@ -365,36 +432,7 @@ is started.
 
   <!----------------------------------------------------------------------------->
 
-  <h3 class="mt-5">How to change size of displayed reflections</h3>
-
-  <p>
-    The size of each reflection is a function of its associated data value. Similar to colour mapping
-    of data values a function is employed that produces a radius, \(r\), dependent on the data value, \(x\), and
-    a power scale factor, \(p\).
-  </p>
-
-  \begin{equation}
-  r(x) = ((x-x_{min})/(x_{max} - x_{min}))^p
-  \end{equation}
-
-  where \(x_{min} \) and \(x_{max}\) are the minimum and maximum data values found in the data set. The power
-  scale factor can either be selected by the user or be determined atuomatically.</p>
-
-  <img style="max-width: 50%;" src="{% static 'cctbx/img/hklviewer/doc_hklviewer_006.png' %}">
-
-  <p class="mt-3">
-    For amplitudes or intensities where often there are orders of magnitude difference between
-    the smallest and the largest data values it can be helpful to adjust the power scale factor to make all
-    reflections the same size, \(p=0\), to ensure all recorded reflections are visible. Alternatively,
-    to get a better view of the strength of the data an automatic power scale factor can be selected which
-    will render the weakest reflections ten times smaller than the strongest reflections. When displaying sigmas of
-    intensities or amplitudes this is reversed so that selecting automatic power scale factor will render the
-    reflections with the smallest sigma ten times the size of the reflection with the largest sigma.
-  </p>
-
-  <!----------------------------------------------------------------------------->
-
-  <h3 class="mt-5">How to partition reflections into bins</h3>
+  <h3 class="mt-5">How to sort reflections into bins</h3>
 
   <p>
     From the Binning tab that is found below the table of datasets on the Details tab
@@ -406,17 +444,17 @@ is started.
   </p>
   <p>
 
-    <!----------------------------------------------------------------------------->
-    <h3 class="mt-5">Bin dataset according to resolution</h3>
+  <!----------------------------------------------------------------------------->
+  <h4 class="mt-5">Bin dataset according to resolution</h4>
 
-    In the figure below 6 bins of resolution have been created for the FP,SIGFP dataset using the default bin thresholds.
+  In the figure below 6 bins of resolution have been created for the FP,SIGFP dataset using the default bin thresholds.
   </p>
 
   <img style="max-width: 100%;" src="{% static 'cctbx/img/hklviewer/doc_hklviewer_007.png' %}">
 
   <!----------------------------------------------------------------------------->
 
-  <h3 class="mt-5">Adjusting bin thresholds</h3>
+  <h5 class="mt-5">Adjusting bin thresholds</h5>
 
   <p>
     If one were to change the bin threshold for 4th bin from 2.27 to 2.1Å this is done by entering the
@@ -441,10 +479,10 @@ is started.
 
   <!----------------------------------------------------------------------------->
 
-  <h3 class="mt-5">Bin dataset according to values in another dataset</h3>
+  <h4 class="mt-5">Bin dataset according to values in another dataset</h4>
 
   <p class="mt-3">
-    Data can alsso be binned against other data values by selecting the desired data value for
+    Data can also be binned against other data values by selecting the desired data value for
     binning from the drop-down list.
   </p>
 
@@ -468,7 +506,7 @@ is started.
 
   <!----------------------------------------------------------------------------->
 
-  <h3 class="mt-5">How to display rotation axes or other vectors</h3>
+  <h3 class="mt-5">How to display space group rotation operators and other vectors</h3>
 
   <!----------------------------------------------------------------------------->
 
@@ -496,7 +534,7 @@ is started.
 
   <!----------------------------------------------------------------------------->
 
-  <h3 class="mt-5">How to add user defined vectors</h3>
+  <h4 class="mt-5">How to add user defined vectors</h4>
 
   <p>
     In addition to rotation axes given by the space group it is possible to explicitly enter a rotation operator and
@@ -595,7 +633,7 @@ is started.
 
   <!----------------------------------------------------------------------------->
 
-  <h3 class="mt-5">Variables</h3>
+  <h4 class="mt-5">Variables</h4>
 
   <p>
     The following variables are available for a python expression submitted in
@@ -658,7 +696,7 @@ is started.
 
   <!----------------------------------------------------------------------------->
 
-  <h3 class="mt-5">Examples of creating a new dataset</h3>
+  <h4 class="mt-5">Examples of creating a new dataset</h4>
 
   <p>
     When creating a new dataset copies, the objective is to define <code>newarray</code> as a
