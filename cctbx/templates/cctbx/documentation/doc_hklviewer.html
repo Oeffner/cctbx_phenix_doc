@@ -41,13 +41,13 @@
     controls consists of two tabs, "Quick View" and "Details", together with a text area for information being emitted
     during usage. The HKLviewer controls can be torn off and floated from the main window or docked in a different
     orientation with the mouse. The layout and the settings customised by the user will be persisted next time the HKLviewer
-is started.
+    is started.
 
   </p>
   <img style="max-width: 100%;" src="{% static 'cctbx/img/hklviewer/LookFeel.png' %}">
 
   <h4>Background colour</h4>
-  The background colour of the graphics rendering window can be adjusted from the background colour menu item from the 
+  The background colour of the graphics rendering window can be adjusted from the background colour menu item from the
   File menu.
 
   <h4>HKLviewer Settings dialog</h4>
@@ -76,19 +76,19 @@ is started.
   <h3 class="mt-4">Predefined buttons</h3>
   <p>
     The "Quick View" tab contains several predefined radio buttons such as "Show Amplitudes",
-    "Show plane of Intensities with constant H", "F/SigF", "I/SigI>=2", "E-values", "Merged Intensities" and 
-    "Multiplicities". Those buttons provide a quick way to the typical ways of displaying reflections from a 
-    loaded reflection file. 
+    "Show plane of Intensities with constant H", "F/SigF", "I/SigI>=2", "E-values", "Merged Intensities" and
+    "Multiplicities". Those buttons provide a quick way to the typical ways of displaying reflections from a
+    loaded reflection file.
   </p>
   <img style="max-width: 80%;" src="{% static 'cctbx/img/hklviewer/presetbuttons.png' %}">
-  <p/>
-  Depending on what datasets are present not all of those buttons will show up. 
-  The "I/SigI>=2", "Merged Intensities" and "Multiplicities" will only be available if there is an intensity 
-  dataset in the file. 
-  <p/>
-  
+  <p />
+  Depending on what datasets are present not all of those buttons will show up.
+  The "I/SigI>=2", "Merged Intensities" and "Multiplicities" will only be available if there is an intensity
+  dataset in the file.
+  <p />
+
   <!----------------------------------------------------------------------------->
-  <h4 class="mt-4">How to display amplitudes, intensities, slices of reflections</h4>
+  <h4 class="mt-4">How to display amplitudes or intensities</h4>
   <p>
     The first dataset of type "Intensities" in the loaded file can be displayed by pressing the "Show Intensities" button.
     HKLviewer first looks for a dataset labelled "I,SIGI" and associates that
@@ -96,9 +96,11 @@ is started.
     If such a dataset this is still not found the button will not be shown. The same applies to the "Show Amplitudes button"
     where it is looking for the dataset "FOBS,SIGFOBS" or a dataset of type "Amplitude".
   </p>
+
+  <h4 class="mt-4">How to display slices of intensities or amplitudes</h4>
   <p>
     Slices of reflections at constant H, K or L can be displayed by pressing one of the "Show plane of intensities"
-    or "Show plane of amplitudes" buttons and then selecting H,K or L-axis from the drop-down list. 
+    or "Show plane of amplitudes" buttons and then selecting H, K or L-axis from the drop-down list.
     HKLviewer will expand intensities or amplitudes data to P1 and Friedel mates. The slice of reflections in reciprocal
     space is obtained by imposing two clip planes perpendicular to the Z-axis on both sides of the origin. Only reflections
     in between the clip planes are visible. HKLviewer then orients the reciprocal space so in case of showing a plane of
@@ -132,10 +134,10 @@ is started.
     correction is not applied.
     This rescales amplitudes by inverting B-factor and scattering factor attenuation
     to make all reflections regardless of resolution shell appear on average to have the same strength.
-    <p/>
-    Given an unmerged dataset of intensities, the "Merged Intensities" button will merge the symmetry-related 
-    reflections (keeping anomalous flag). The "Multiplicities" button will emit a dataset of integers counting the
-    how many symmetry related reflections was used to produce a reflection in the merged array.
+  <p />
+  Given an unmerged dataset of intensities, the "Merged Intensities" button will merge the symmetry-related
+  reflections (keeping anomalous flag). The "Multiplicities" button will emit a dataset of integers counting the
+  how many symmetry related reflections was used to produce a reflection in the merged array.
 
   </p>
   <!----------------------------------------------------------------------------->
@@ -192,7 +194,7 @@ is started.
     A unique stringID, say "FriedelBtn" as wells as a text string to display next to the button,
     say "Expand Friedel pairs", must also be provided.
     <a name="hkl_viewer_buttons_py_file"></a>
-    These two tuple elements come before the PHIL parameters string. 
+    These two tuple elements come before the PHIL parameters string.
   </p>
 
 
@@ -201,7 +203,8 @@ is started.
   <p>
     When the HKLviewer is restarted with this file present as .hkl_viewer_buttons.py in the user's HOME directory
     buttons defined in this file will appear on the "Quick View" tab encircled with a green pen as
-    illustrated below. Besides the "Expand Friedel pairs" button a "Show SigI" button has also been defined and is shown.
+    illustrated below. In this example, besides the "Expand Friedel pairs" button a "Show SigI" button
+    has also been defined and is shown as well.
   </p>
 
   <img style="max-width: 70%;" src="{% static 'cctbx/img/hklviewer/user_preset_btn_loaded.png' %}">
@@ -216,50 +219,50 @@ is started.
   <h3 class="mt-4">Integration with other programs</h3>
 
   <h4>Xtriage</h4>
-    Xtriage is also a part of the CCTBX and Phenix. An amplitude or intensity dataset that is displayed in the
-    HKLviewer can be processed with Xtriage by clicking on the "Xtriage" button on top on the "Quick View" tab
-    of the HKLviewer controls. Once it has finished a log file from the Xtriage run will be present in the bottom 
-    of the HKLviewer controls as an additional tab. 
+  Xtriage is also a part of the CCTBX and Phenix. An amplitude or intensity dataset that is displayed in the
+  HKLviewer can be processed with Xtriage by clicking on the "Xtriage" button on top on the "Quick View" tab
+  of the HKLviewer controls. Once it has finished a log file from the Xtriage run will be present in the bottom
+  of the HKLviewer controls as an additional tab.
 
-    If the dataset is likely to be twinned Xtriage will emit a list of possible twin operators which the HKLviewer 
-    then makes accessible as buttons below on the "Quick View" tab as well as on the Vectors tab found on the 
-    Details tab. The twin operator which Xtriage computes to have the lowest R-obs value is usually the most interesting.
-    It is found in the list of twin operators in the Xtriage tab and matches one of the rotation operators on the 
-    Vectors tab found on the Details tab.
-    <p/>
-    <img style="max-width: 100%;" src="{% static 'cctbx/img/hklviewer/Xtriagebuttons.png' %}">
-    <p/>
-    A tutorial on how to inspect a twin law is given in the <a href="../tuto_hklviewer/#inspecting_a_twin_law">tutorial section</a>.
-  
+  If the dataset is likely to be twinned Xtriage will emit a list of possible twin operators which the HKLviewer
+  then makes accessible as buttons below on the "Quick View" tab as well as on the Vectors tab found on the
+  Details tab. The twin operator which Xtriage computes to have the lowest R-obs value is usually the most interesting.
+  It is found in the list of twin operators in the Xtriage tab and matches one of the rotation operators on the
+  Vectors tab found on the Details tab.
+  <p />
+  <img style="max-width: 100%;" src="{% static 'cctbx/img/hklviewer/Xtriagebuttons.png' %}">
+  <p />
+  A tutorial on how to inspect a twin law is given in the <a href="../tuto_hklviewer/#inspecting_a_twin_law">tutorial section</a>.
+
 
   <h4>Xtricorder</h4>
-    Xtricorder is part  <a href="https://doi.org/10.1107/S2059798320014746">Phasertng</a> distributed within the 
-    Phenix and the CCP4 suite. Pressing the Xtricorder button it will analyse an mtz file in several ways
-    and produces an output file with several additional columns. This output file will subsequently be loaded in
-    the HKLviewer. The most interesting new columns are the INFO, the ANISO and the TEPS columns. These columns
-    are the information content of each reflection, the anisotropy correction terms and the TNCS correction
-    terms, respectively. The TEPS column may not be present if no significant TNCS modulation is detected in the intensities.
-    The INFO column will be absent if the original mtz file only contained amplitudes and not intensities.
-    Once the mtz file produced by Xtricorder has been loaded the HKLviewer will display some new buttons on the Quick View
-    tab. 
-    <p/>
-    <img style="max-width: 75%;" src="{% static 'cctbx/img/hklviewer/Xtricorderbuttons.png' %}">
-  <p/>
-    These are buttons are for visualising reflections with information content less than 0.35 bits, for
-    for visualising anisotropy and for visualising TNCS correction terms.
-    A tutorial on how to inspect TNCS modulation in a dataset is given in the 
-    <a href="../tuto_hklviewer/#inspecting-tncs-modulation-in-a-dataset">tutorial section</a>.
+  Xtricorder is part  <a href="https://doi.org/10.1107/S2059798320014746">Phasertng</a> distributed within the
+  Phenix and the CCP4 suite. Pressing the Xtricorder button it will analyse an mtz file in several ways
+  and produces an output file with several additional columns. This output file will subsequently be loaded in
+  the HKLviewer. The most interesting new columns are the INFO, the ANISO and the TEPS columns. These columns
+  are the information content of each reflection, the anisotropy correction terms and the TNCS correction
+  terms, respectively. The TEPS column may not be present if no significant TNCS modulation is detected in the intensities.
+  The INFO column will be absent if the original mtz file only contained amplitudes and not intensities.
+  Once the mtz file produced by Xtricorder has been loaded the HKLviewer will display some new buttons on the Quick View
+  tab.
+  <p />
+  <img style="max-width: 75%;" src="{% static 'cctbx/img/hklviewer/Xtricorderbuttons.png' %}">
+  <p />
+  These are buttons are for visualising reflections with information content less than 0.35 bits, for
+  for visualising anisotropy and for visualising TNCS correction terms.
+  A tutorial on how to inspect TNCS modulation in a dataset is given in the
+  <a href="../tuto_hklviewer/#inspecting-tncs-modulation-in-a-dataset">tutorial section</a>.
 
   <h4>XDSGUI</h4>
-    The HKLviewer can be integrated with the
-    <a href="https://strucbio.biologie.uni-konstanz.de/xdswiki/index.php/Main_Page">XDSGUI</a> to make it easy to visualise
-    and inspect newly integrated datasets. This is a lightweight implementation that relies on the presence of a Phenix 
-    installation. Then the command-line to the HKLviewer needs to be specified in the XDSGUI and it will persists between
-    sessions of running the XDSGUI. The command line that needs to be entered in the XDSGUI is the following:
+  The HKLviewer can be integrated with the
+  <a href="https://strucbio.biologie.uni-konstanz.de/xdswiki/index.php/Main_Page">XDSGUI</a> to make it easy to visualise
+  and inspect newly integrated datasets. This is a lightweight implementation that relies on the presence of a Phenix
+  installation. Then the command-line to the HKLviewer needs to be specified in the XDSGUI and it will persists between
+  sessions of running the XDSGUI. The command line that needs to be entered in the XDSGUI is the following:
 <pre class="CodeGreen"><code>source &lt;path/to/phenix-installation&gt;/phenix_env.sh; cctbx.HKLviewer XDS_ASCII.HKL</code></pre>
-    In the XDSGUI this should be entered under the button labelled "User defined command 3" found on the "Further analyses" 
-    part of the "tools" tab as illustrated on the screenshot of the 
-    <a href="{% static 'cctbx/img/hklviewer/XDSGUIscreenshot.jpg' %}">XDSGUI with the HKLviewer here</a>.
+  In the XDSGUI this should be entered under the button labelled "User defined command 3" found on the "Further analyses"
+  part of the "tools" tab as illustrated on the screenshot of the
+  <a href="{% static 'cctbx/img/hklviewer/XDSGUIscreenshot.jpg' %}">XDSGUI with the HKLviewer here</a>.
 
 
   <h3 class="mt-4">How to display other reflection datasets</h3>
@@ -287,8 +290,8 @@ is started.
 
   <h3 class="mt-4">Customising appearance of a particular type of dataset</h3>
   HKLviewer comes with default schemes for displaying different data types in of colours and sizes of
-  the displayed reflections. These can be customised by the user and the settings will be persisted 
-  next time the HKLviewer is started. 
+  the displayed reflections. These can be customised by the user and the settings will be persisted
+  next time the HKLviewer is started.
 
   <h4 class="mt-4">How to change colour mapping</h4>
 
@@ -405,31 +408,47 @@ is started.
 
   <!----------------------------------------------------------------------------->
 
-  <h3 class="mt-5">How to slice reflections with arbitrarily oriented clip planes</h3>
+  <h3 class="mt-5">How to slice reflections</h3>
+  The easiest way to slice reflections is to press the "Show plane of Intensities" or "Show plane of amplitudes"
+  button on the "Quick View" tab and then desired direction in which to slice the reflection on the adjacent
+  drop down button. This will only slice reflections of datasets with amplitudes or intesities if present
+  in the file.
 
-  <p>
-    If slices of reflections other than
-    <a href="#how-to-display-amplitudes-intensities-slices-of-reflections">perpendicular to H,K or L axes</a>
-    or for datasets other than amplitudes or intensities is desired this can be achieved from the Slicing tab that is
-    foud on the Details tab beneath the tabel of datasets.
+  <h4 class="mt-5">How to slice reflections with arbitrarily oriented clip planes</h4>
 
-    It is most informative to first expand
-    the reflections to the full sphere on the <a href="#how-to-expand-reflections">Expansion tab</a>. Next, tick
-    the checkbox, "Slice with a clip plane parallel to the screen". Three options invoked by the radio buttons are now present.
-
-    (1) The user can orient the sphere of reflections with the mouse as desired
-    (2) The sphere of reflections is oriented so that a selected vector from the drop down list of vectors is aligned
-    perpendicular to the clip planes.
-    (3) The sphere of reflections is oriented so that the real space vector associated with a selected vector from the
-    drop down list of vectors is aligned perpendicular to the clip planes. The latter option does not apply if the vector in
-    the list is itself a real space vector (such as a tNCS vector) or a rotation axis defined by a rotation operator.
-    By using <a href="#how-to-add-user-defined-vectors">user defined vectors</a> it is then possible to orient the sphere of reflections in a
-    in a well defined manner and slice it with a clip plane.
-
-  </p>
+  If a slice of reflections for a dataset other than amplitudes or intensities
+  <a href="#how-to-display-slices-of-intensities-or-amplitudes">perpendicular to H,K or L axes</a>
+  should be displayed this can be achieved from the Slicing tab that is
+  found on the Details tab beneath the tabel of datasets. Double click the desired dataset in that table.
+  Then expand the reflections to the full sphere on the <a href="#how-to-expand-reflections">Expansion tab</a>.
+  Next, tick the checkbox, "Slice with a clip plane parallel to the screen". Three options invoked by
+  the radio buttons are now present which are:
+  <ol>
+    <li>
+      "use curent orientation", meaning orientation is done by dragging with the mouse,
+    </li>
+    <li>
+      "is normal to", meaning a defined orientation of the sphere of reflections so that a 
+      selected vector from the drop down list of vectors is aligned
+      perpendicular to the clip planes
+    </li>
+    <li>
+      "is normal to the real space vector associated with", meaning a
+      defined orientation of the sphere of reflections so that the real space vector associated with the selected vector from the
+      drop down list of vectors is aligned perpendicular to the clip planes.
+    </li>
+  </ol>
 
   <img style="max-width: 100%;" src="{% static 'cctbx/img/hklviewer/doc_hklviewer_004.png' %}">
+  Option 1 and 2 disables rotating with the mouse and only allows zooming and translating with the mouse.
+  Option 3 only applies to reciprocal vectors and does not apply if the selected vector from
+  the drop-down list is itself a real space vector (such as a tNCS vector) or a rotation axis defined by a rotation operator.
+  Option 3 will also display an
+  equation that is satisfied for points lying in this plane, give or take a bit of width of the deisplayed reflections
+  as well as the width of the clip planes.
 
+  By using <a href="#how-to-add-user-defined-vectors">user defined vectors</a> it is then possible to orient
+  the sphere of reflections in a in a well defined manner and slice it with a clip plane.
   <!----------------------------------------------------------------------------->
 
   <h3 class="mt-5">How to sort reflections into bins</h3>
@@ -444,10 +463,10 @@ is started.
   </p>
   <p>
 
-  <!----------------------------------------------------------------------------->
-  <h4 class="mt-5">Bin dataset according to resolution</h4>
+    <!----------------------------------------------------------------------------->
+    <h4 class="mt-5">Bin dataset according to resolution</h4>
 
-  In the figure below 6 bins of resolution have been created for the FP,SIGFP dataset using the default bin thresholds.
+    In the figure below 6 bins of resolution have been created for the FP,SIGFP dataset using the default bin thresholds.
   </p>
 
   <img style="max-width: 100%;" src="{% static 'cctbx/img/hklviewer/doc_hklviewer_007.png' %}">
