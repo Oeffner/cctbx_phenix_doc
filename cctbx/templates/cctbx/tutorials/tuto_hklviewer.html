@@ -43,18 +43,23 @@
     as the formula and the label for the new data respectively.
   </p>
 
-  <img style="max-width: 60%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_02.png' %}">
+  <img style="max-width: 90%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_02.png' %}">
 
   <p class="mt-3">
-    The first statement <code>newarray._data = array1.data()/array1.sigmas()</code> computes the
+    The first statement <code>newarray._data = flex.abs(array1.data())/array1.sigmas()</code> computes the
     I/SigI of all data values but with the absolute values of the intensities since there appear to be a significant number
-    of negative intensities.<br>
-    For convenience <code>newarray</code> is initialised to a copy of the original array (here representing "IMEAN,SIGIMEAN").<br>
+    of negative intensities.<br> 
+    The <code>newarray</code> is always initialised to a copy of the original array (here representing "IMEAN,SIGIMEAN").<br>
     For I/SigI data we are not interested in the sigma values themselves. So we discard the sigmas array with the second
     statement <code>newarray._sigmas = None</code>.<br>
-    The third statement <code>newarray.set_observation_type(None)</code> is optional. It tells CCTBX to deduce which type of
-    data newarray will contain. In the case of I/SigI it will be plain real numbers. It could have been more specialised types
-    such as map coefficients or X-ray observations. Since the colour mapping and sizing schemes are specific to each observation
+    The third statement <code>newarray.set_observation_type(None)</code> is optional. 
+    It tells CCTBX to deduce which type of data newarray will contain. 
+    In the case of I/SigI CCTBX will recognise the array as plain real numbers and the HKLviewer will then use a 
+    default colour coding for that. It could have been more specialised types
+    such as map coefficients or X-ray observations. Had we left out this statement <code>newarray</code> would still
+    have the observation type of intensities and use the corresponding colour coding.
+
+    Since the colour mapping and sizing schemes are specific to each observation
     type, datasets classified with sensible observation types makes it easier to compare datasets in the viewer with other
     datasets of the same observation type.<br>
     Clicking the "Compute new reflection dataset" button will execute the script and display the IoverSigI dataset in the viewer
@@ -87,7 +92,7 @@
   demonstrates how a dataset created on the fly can be accomplished with a customised button.
   Having followed the sections above and assuming we have not changed any settings of the HKLviewer
   we can now make a general custom button that will always display I/SigI>=2 for any dataset containing I/SigI values.
-  Do this by bringing up the Settings (or Preferences) dialog from the File menu and extract thee PHIL parameters
+  Do this by bringing up the Settings (or Preferences) dialog from the File menu and extract the PHIL parameters
   as described  <a href="../doc_hklviewer/#get_PHIL_params">here</a>. This should produce the following text:
 
 <pre><code>
@@ -135,8 +140,12 @@ the python list in the file,
     identified and taken into
     account by the software. tNCS vectors are real space vectors and can be determined before structure solution attempts.
     The dataset <a href="https://files.rcsb.org/download/6C5F-sf.cif">6C5F</a> (available from the PDB) has tNCS which
-    is detected by programs such as <code>phenix.xtriage</code>.
-    It determined the pseudo-symmetry vector to be [0.333, -0.334, 0.040] in fractional coordinates. Follow the steps below:
+    is detected by programs such as <code>Xtriage</code> and by <code>Xtricorder</code>.
+
+  <h4 class="mt-3">Using Xtriage to illustrate TNCS</h4>
+
+    Clicking the Xtriage button on the Quick View tab determined the pseudo-symmetry vector to be 
+    [0.333, -0.334, 0.040] in fractional coordinates. Follow the steps below:
   </p>
   <ul>
     <li>Open the data file in the HKLviewer.</li>
@@ -147,12 +156,10 @@ the python list in the file,
       that are roughly proportional to intensities (the file from the PDB does not provide the original intensity data).
     </li>
     <li>
-      On the Vectors tab, enter the coordinates for the tNCS vector found by xtriage [0.333, -0.334, 0.040] on the last
-      line by overwriting the “new vector” label to “xtriageTNCS” and entering the coordinates in the same row under the “as abc”
-      column. Pressing return will submit the vector to HKLviewer.
+      On the Vectors tab Xtriage has entered the TNCS vector to the list of other vectors. It is labelled TNCS_xtriage.
     </li>
     <li>
-      Tick the xtriageTNCS vector checkbox as well as the “Orient vector” checkbox and the radio button “Parallel to
+      Tick the TNCS_xtriage vector checkbox as well as the “Orient vector” checkbox and the radio button “Parallel to
       screen”.
     </li>
     <li>Either rotate the reflections manually on the slider control or tick the “Rotate continuously” checkbox.</li>
@@ -166,12 +173,27 @@ the python list in the file,
 
   <img style="max-width: 90%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_05.png' %}">
 
-  <p class="mt-3">
-    Phasertng, which is currently under development, stores a data column, TEPS, with the correction factors,
-    epsilon, revealing the tNCS modulation of the intensities. The coordinates for the tNCS vector is embedded in the mtz
-    file when  the mtz file has been processed with phasertng. This is illustrated below where the reflections have been
-    sliced with a clip plane width of 8. On the sizing tab we have set the power factor to 0 and the linear scaling factor
-    to 0.8. The modulation is clear from the alternating layers of red, green and blue layers of reflections.
+  <h4 class="mt-3">Using Xtricorder to illustrate TNCS </h4>
+
+  <p>
+    
+    Xtricorder stores a data column, TEPS, with the TNCS correction factors
+    revealing the TNCS modulation of the intensities. The coordinates for the TNCS vector is embedded in the mtz
+    file when the mtz file has been processed with phasertng and then listed on the vectors tab and as the
+    buttons on the Quick View tab described <a href="../doc_hklviewer/#Xtricorder">here</a> named "Rotate around TNCS vector"
+    and "Slice perpendicular to TNCS vector".
+<br/>
+    Pressing the button on the Quick View tab labelled "Rotate around TNCS vector" will then slice the reflections 
+    with a clip plane width of around 8 units, expand all reflections to P1 and Friedel mates, align the reflections
+    with the TNCS vector parallel to the screen, pointing upwards and rotate the sphere of reflections around the TNCS
+    vector. This will show the TNCS madulation as coloured horizontal ripples in the sphere of reflections. 
+<br/>
+    We can also illustrate the modulation by pressing the "Slice perpendicular to TNCS vector" button. Thereby one can 
+    inspect the modulation layer by layer. One would expect to see every other slice of reflections to have a 
+    strong or weak TNCS correction factor. But this may sometimes be less obvious as the TNCS vector typically 
+    is not completely parallel with a reciprocal space vector with 
+    integer indices. Therefore a mixture of strong and weak reflections may be present in each slice.
+
   </p>
 
   <img style="max-width: 90%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_06.png' %}">

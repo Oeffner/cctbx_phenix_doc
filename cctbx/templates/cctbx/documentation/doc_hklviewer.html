@@ -128,9 +128,9 @@
     is displayed.
   <p />
   <p>
-    E-values i.e. normalised amplitudes can also be calculated on the fly with a button press. E-values are computed according to
+    E-values i.e. normalised amplitudes can also be calculated on the fly with a button press. E-values are computed with to
     the
-    <a href="https://cctbx.github.io/cctbx/cctbx.miller.html#cctbx.miller.array.normalize">normalize() function</a>
+    <a href="https://cctbx.github.io/cctbx/cctbx.miller.html#cctbx.miller.array.normalize">normalize function</a>
     in the CCTBX.
     This rescales amplitudes by inverting B-factor and scattering factor attenuation
     to make all reflections regardless of resolution shell appear on average to have the same strength.
@@ -138,7 +138,8 @@
 <p />
   <h4 class="mt-4">Merged Intensities and Multiplicities</h4>
   Given an unmerged dataset of intensities, the "Merged Intensities" button will merge the symmetry-related
-  reflections (keeping anomalous flag). The "Multiplicities" button will create a dataset of integers counting
+  reflections (keeping anomalous flag), i.e. put reflections into just one asymmetric unit wedge if that is not 
+  already the case. The "Multiplicities" button will create a dataset of integers counting
   how many symmetry related reflections was used to produce a reflection in the merged array. These two buttons
   are using the  <a href="https://cctbx.github.io/cctbx/cctbx.miller.html#cctbx.miller.array.merge_equivalents">
   merge_equivalents function<a/> in CCTBX.
@@ -157,7 +158,7 @@
       and a <a href="#further-api-details">PHIL</a> parameter string defining how the HKLviewer should present a particular
       data set. The PHIL parameters specifies what type of data set (amplitudes, intensities, etc)
       should be displayed as well as how it should be displayed. The PHIL parameters may also
-      define displaying an additional data set that is yet to be calculated on the fly such as I/SigI. See
+      define displaying an additional data set that is yet to be calculated on the fly such as I/SigI. Read
       <a href="#how-to-make-a-new-dataset">here on how to create new a dataset</a>.
     </p>
 
@@ -222,7 +223,8 @@
 
     <h3 class="mt-4">Integration with other programs</h3>
 
-    <h4>Xtriage</h4>
+    <a name="Xtriage"></a>
+    <h4 class="mt-4">Xtriage integration</h4>
     Xtriage is also a part of the CCTBX and Phenix. An amplitude or intensity dataset that is displayed in the
     HKLviewer can be processed with Xtriage by clicking on the "Xtriage" button on top on the "Quick View" tab
     of the HKLviewer controls. Once it has finished a log file from the Xtriage run will be present in the bottom
@@ -239,7 +241,8 @@
     A tutorial on how to inspect a twin law is given in the <a href="../tuto_hklviewer/#inspecting_a_twin_law">tutorial section</a>.
 
 
-    <h4>Xtricorder</h4>
+    <a name="Xtricorder"></a>
+    <h4 class="mt-4">Xtricorder integration</h4>
     Xtricorder is part  <a href="https://doi.org/10.1107/S2059798320014746">Phasertng</a> distributed within the
     Phenix and the CCP4 suite. Pressing the Xtricorder button it will analyse an mtz file in several ways
     and produces an output file with several additional columns. This output file will subsequently be loaded in
@@ -258,7 +261,8 @@
     A tutorial on how to inspect TNCS modulation in a dataset is given in the
     <a href="../tuto_hklviewer/#inspecting-tncs-modulation-in-a-dataset">tutorial section</a>.
 
-    <h4>XDSGUI</h4>
+    <a name="XDSGUI"></a>
+    <h4 class="mt-4">Integration in XDSGUI</h4>
     The HKLviewer can be integrated with the
     <a href="https://strucbio.biologie.uni-konstanz.de/xdswiki/index.php/Main_Page">XDSGUI</a> to make it easy to visualise
     and inspect newly integrated datasets. This is a lightweight implementation that relies on the presence of a Phenix
@@ -798,11 +802,12 @@
     <h3 class="mt-4">How to show a table of one or more dataset values</h3>
 
     <p>
-      With a right click on the upper-left table of datasets in the reflection data file individual datasets can
-      be tabulated from the context menu. First highlight the datasets of interest. Right click these.
-      Then click on "Show a table of <code>some datasets</code>  ...".
+      With a right click on the upper-left table of datasets in the data file one or more datasets can
+      be tabulated from the context menu. First highlight the datasets of interest, then right click these,
+      then click on <code>Show a table of &lt;some datasets&gt;...</code>.
       This brings up a window with tabulated data as it is stored in the reflection data file as well as
-      the ones that may have been created <a href="#how-to-make-a-new-dataset">as decribed above</a>.
+      the ones that may have been created from one of the predefined buttons or 
+       <a href="#how-to-make-a-new-dataset">as decribed above</a>.
     </p>
 
     <img style="max-width: 100%;" src="{% static 'cctbx/img/hklviewer/doc_hklviewer_023.png' %}">
