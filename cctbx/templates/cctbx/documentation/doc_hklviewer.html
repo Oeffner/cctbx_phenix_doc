@@ -873,13 +873,19 @@ spacegroup_choice = None
 using_space_subgroup = False
   .help = "internal flag"
   .type = bool
-real_space_unit_cell_scale_fraction = None
+draw_real_space_unit_cell = False
+  .help = "show real space unit cell"
+  .type = bool
+draw_reciprocal_unit_cell = False
+  .help = "show reciprocal space unit cell"
+  .type = bool
+real_space_unit_cell_scale_fraction = 0.0
   .help = "Parameter specifying the scale at which to display the unit cell"
           "compared to reciprocal space. 0 means  true to scale of the size of"
           "the reciprocal lattice. 1 means close to the radius of the"
           "displayed sphere of reflections."
   .type = float(value_min=0, value_max=1, allow_none=True)
-reciprocal_unit_cell_scale_fraction = None
+reciprocal_unit_cell_scale_fraction = 0.0
   .help = "Parameter specifying the scale at which to display the reciprocal"
           "unit cell compared to reciprocal space.  0 means true to scale of"
           "the size of the reciprocal lattice. 1 means close to the radius of"
@@ -1237,7 +1243,6 @@ tooltip_data = "[]"
 use_wireframe = False
   .help = "Draw objects using wireframe mesh"
   .type = bool
-
 </code></pre>
 
     <!----------------------------------------------------------------------------->
