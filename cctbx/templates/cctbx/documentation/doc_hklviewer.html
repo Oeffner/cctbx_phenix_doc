@@ -237,9 +237,9 @@
     Vectors tab found on the Details tab.
     A tutorial on how to inspect a twin law is given in the <a href="../tuto_hklviewer/#inspecting_a_twin_law">tutorial section</a>.
     <br />
-    Xtriage will also detect any TNCS modulation with patterson peak height larger than 
+    Xtriage will also detect TNCS modulation with a patterson peak height larger than 
     0.1 of the origin peak height. If present, buttons will be available allowing inspection of the modulation
-    from amplitudes or intensities converted into E-values. 
+    from amplitudes or intensities converted into E-values. If the modulation is weak it may not be visible to the naked eye.
     Below is a snapshot of the buttons available (green arrow) if there is twinning and TNCS in the dataset analysed by Xtriage.
     <br />
     <br />
@@ -258,14 +258,14 @@
     0.1 of the origin peak height is detected in the intensities.
     The INFO column will be absent if the original mtz file only contained amplitudes and not intensities.
     Once the mtz file produced by Xtricorder has been loaded the HKLviewer will display new buttons on the Quick View
-    tab for visualising the TNCS modulation through the TEPS column which is much clearer way of illustrating
-    TNCS than by other means. Anisotropy can be shown from displaying the anisotropy correction terms and the principal
-    axes of the corresponding tensor. If it is ellipsoidal then the dataset is very anisotropic.
+    tab for visualising the TNCS modulation through the TEPS data which is very sensitive. Anisotropy can be shown 
+    from displaying the anisotropy correction terms and the 
+    principal axes of the corresponding tensor. If it looks ellipsoidal then the dataset is very anisotropic.
     <br />    
     Above is a snapshot of the buttons available (blue arrow) if there is TNCS in the dataset analysed by Xtrcorder.
     These are buttons are for visualising reflections with information content less than 0.35 bits, for
     for visualising anisotropy and for visualising TNCS correction terms. Reflections with information less
-    than 0.35 bits roughly corresponds to I/SigI&lt;2 and is another measure for what considered to be bad data.
+    than 0.35 bits roughly corresponds to I/SigI&lt;2.
     A tutorial on how to inspect TNCS modulation in a dataset is given in the
     <a href="../tuto_hklviewer/#inspecting-tncs-modulation-in-a-dataset">tutorial section</a>.
 
@@ -287,7 +287,7 @@
     <h3 class="mt-4">How to display other reflection datasets</h3>
 
     <p>
-      Data sets other than default amplitudes or intensities can be
+      Data sets other than what are available from the Quick View tab can be
       displayed from the details tab by double-clicking the row with
       the corresponding label in the upper left table.
     </p>
@@ -310,7 +310,7 @@
     <h3 class="mt-4">Customising appearance of a particular type of dataset</h3>
     HKLviewer comes with default schemes for displaying different data types in of colours and sizes of
     the displayed reflections. These can be customised by the user and the settings will be persisted
-    next time the HKLviewer is started.
+    for next time the HKLviewer is started.
 
     <h4 class="mt-4">How to change colour mapping</h4>
 
