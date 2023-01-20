@@ -133,63 +133,72 @@ the python list in the file,
 
   <h3 class="mt-3">Inspecting an unmerged dataset</h3>
   If you have unmerged intensity data in a loaded file this can be merged so that all reflections are cast into the same
-  asymmetric unit wedge. An example of unmerged reflection data is given in this file produced by integrating
-  images from asdfasdf
-  with XDS. Clicking on the "Show Intensities" button on the Quick View tab loads all reflections into the viewer. We note that
-  the form more lamost a full sweep in reciprocal space. Clicking the "Merged Intensities" button then casts the reflections
-  into an asymmetric unit wedge. Clicking the Multiplicities button then calculates how many of unmerged reflections 
-  have been used for deriving the value of each of the merged reflections. With the multiplicities data it is then 
-  possible to sort reflections according to how many unmerged reflections they have been averaged over.
+  asymmetric unit wedge. An example of unmerged reflection data is given in the file
+  <a href="https://phenix-online.org/phenix_data/cctbx_phenix_doc_data/merged.mtz">XDS_ASCII.HKL</a>. It suffered 
+  from several problems during data collection but is nevetheless instructive to use in this tutorial.
+  Load it into HKLviewer and click on the "Show Intensities" button on the Quick View tab. We note that a full sweep
+  has not been performed during data collection. 
+<br />
+  <img style="max-width: 40%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_unmerged.png' %}">
+<br />
+This might be justified as the crystal has a high symmetry (I 41 2 2).
+  Clicking the "Merged Intensities" button then merges the reflections
+  into one asymmetric unit wedge. 
+<br />
+  <img style="max-width: 40%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_merged.png' %}">
+<br />
 
+Clicking the Multiplicities button calculates how many of the unmerged reflections 
+  have been used for deriving the value of each of the merged reflections. 
+<br />
+  <img style="max-width: 40%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_multi.png' %}">
+<br />
+With the multiplicities data it is then 
+  possible to sort reflections according to how many unmerged reflections they have been averaged over.
 
 
   <h3 class="mt-3">Inspecting TNCS modulation in a dataset</h3>
 
   <p>
-    tNCS or pseudo-symmetry is a crystal pathology where two or more molecules in the unit cell are aligned in a way to
+    TNCS or pseudo-symmetry is a crystal pathology where two or more molecules in the unit cell are aligned in a way to
     cause interference in the diffraction pattern.
     It shows as periodic modulation of the diffraction pattern and can cause problems for structure solution unless
     identified and taken into
-    account by the software. tNCS vectors are real space vectors and can be determined before structure solution attempts.
-    The dataset <a href="https://files.rcsb.org/download/6C5F-sf.cif">6C5F</a> (available from the PDB) has tNCS which
-    is detected by programs such as <code>Xtriage</code> and by <code>Xtricorder</code>.
+    account by the software. TNCS vectors are real space vectors and should be determined before structure solution attempts.
+    It is possible to detect TNCS with Xtriage if the modulation is strong. HKLviewer makes this visible by computing 
+    normalised amplitudes (E-values) and aligning an expanded sphere of reflections with the TNCS vector parallel or 
+    perpendicular to the screen. 
 
-  <h4 class="mt-3">Using Xtriage to illustrate TNCS</h4>
-
-    Clicking the Xtriage button on the Quick View tab determined the pseudo-symmetry vector to be 
-    [0.333, -0.334, 0.040] in fractional coordinates. Follow the steps below:
+    The dataset <a href="https://files.rcsb.org/download/3RBX-sf.cif">3RBX</a> (available from the PDB) has strong
+    TNCS modulation which can be detected by <code>Xtriage</code>. After downloading the data convert it to mtz
+    with the command <code>iotbx.cif_as_mtz 3RBX-sf.cif</code> which will produce an mtz file named <code>3RBX-sf.mtz</code>.
+    Then follow the steps below:
   </p>
   <ul>
-    <li>Open the data file in the HKLviewer.</li>
-    <li>Double click the "F_meas_au,F_meas_sigma_au" label (or "FP,SIGFP" if loading an mtz file) to display the data.</li>
-    <li>On the Expansion tab, expand the reflections to a sphere.</li>
+    <li>Open <code>3RBX-sf.mtz</code> in the HKLviewer.</li>
+    <li>On the Quick View tab, click on the "Show Intensities" button to display the data.</li>
+    <li>Click on the "Run Xtriage" button and wait a moment until Xtriage has finished.</li>
     <li>
-      On the sizing tab, tick the “User defined power scaling” checkbox and enter a power factor of 2 to obtain values
-      that are roughly proportional to intensities (the file from the PDB does not provide the original intensity data).
+    Click on the "Rotate around "TNCS_xtriage vector" button.
     </li>
-    <li>
-      On the Vectors tab Xtriage has entered the TNCS vector to the list of other vectors. It is labelled TNCS_xtriage.
-    </li>
-    <li>
-      Tick the TNCS_xtriage vector checkbox as well as the “Orient vector” checkbox and the radio button “Parallel to
-      screen”.
-    </li>
-    <li>Either rotate the reflections manually on the slider control or tick the “Rotate continuously” checkbox.</li>
   </ul>
 
   <p>
-    This will show the modulations in the data as ripples in the reflections in planes perpendicular to the tNCS vector.
-    It can be useful to tick the “Show Real Space Unit cell” checkbox to see where the tNCS vector points in relation to
-  the unit cell.
+    The TNCS vector now points upwards parallel to the screen as a dark line emerging from the origin of the 
+    reciprocal lattice. In this case the modulation is seen as strong E-values every third layer of reflections
+    in reciprocal space indicating that there are three aligned molecules in the asymmetric unitcell giving rise to the
+    TNCS.    
+
   </p>
 
-  <img style="max-width: 90%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_05.png' %}">
+  <img style="max-width: 60%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_xtriageTNCS.png' %}">
 
-  <h4 class="mt-3">Using Xtricorder to illustrate TNCS </h4>
+  <h5 class="mt-3">Using Xtricorder to illustrate TNCS </h5>
 
   <p>
-    
-    Xtricorder stores a data column, TEPS, with the TNCS correction factors
+    If the modulation is not that strong or is mostly confined to low resolution reflections visual inspection 
+    of the actual TEPS correction terms will be necessary.
+    Xtricorder stores these in a separate data column
     revealing the TNCS modulation of the intensities. The coordinates for the TNCS vector is embedded in the mtz
     file when the mtz file has been processed with phasertng and then listed on the vectors tab and as the
     buttons on the Quick View tab described <a href="../doc_hklviewer/#Xtricorder">here</a> named "Rotate around TNCS vector"
@@ -208,7 +217,7 @@ the python list in the file,
 
   </p>
 
-  <img style="max-width: 90%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_06.png' %}">
+  <img style="max-width: 90%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_xtricorderTNCS.png' %}">
 
 <a name="inspecting_a_twin_law"></a>
   <h3 class="mt-4">Inspecting a twin law</h3>
