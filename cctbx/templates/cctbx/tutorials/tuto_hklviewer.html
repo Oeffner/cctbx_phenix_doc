@@ -43,18 +43,18 @@
     as the formula and the label for the new data respectively.
   </p>
 
-  <img style="max-width: 90%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_02.png' %}">
+  <img style="max-width: 80%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_02.png' %}">
 
   <p class="mt-3">
     The first statement <code>newarray._data = flex.abs(array1.data())/array1.sigmas()</code> computes the
     I/SigI of all data values but with the absolute values of the intensities since there appear to be a significant number
-    of negative intensities.<br> 
+    of negative intensities.<br>
     The <code>newarray</code> is always initialised to a copy of the original array (here representing "IMEAN,SIGIMEAN").<br>
     For I/SigI data we are not interested in the sigma values themselves. So we discard the sigmas array with the second
     statement <code>newarray._sigmas = None</code>.<br>
-    The third statement <code>newarray.set_observation_type(None)</code> is optional. 
-    It tells CCTBX to deduce which type of data newarray will contain. 
-    In the case of I/SigI CCTBX will recognise the array as plain real numbers and the HKLviewer will then use a 
+    The third statement <code>newarray.set_observation_type(None)</code> is optional.
+    It tells CCTBX to deduce which type of data newarray will contain.
+    In the case of I/SigI CCTBX will recognise the array as plain real numbers and the HKLviewer will then use a
     default colour coding for that. It could have been more specialised types
     such as map coefficients or X-ray observations. Had we left out this statement <code>newarray</code> would still
     have the observation type of intensities and use the corresponding colour coding.
@@ -122,7 +122,7 @@ viewer {
 </code></pre>
 
   The PHIL parameters below the line "Current non-default phil parameters:" should then be copied into a tuple element in
-the python list in the file,
+  the python list in the file,
   .hkl_viewer_buttons.py, that lives in the HOME directory as described <a href="../doc_hklviewer/#hkl_viewer_buttons_py_file">here</a>.
   The first two elements in the tuple should be a unique ID and an appropriate name such as "ISIGI2btn" and "I_SigI>=2",
   respectively. Next time the HKLviewer is started this button labelled "I_SigI>=2" will appear. This button will then
@@ -134,26 +134,26 @@ the python list in the file,
   <h3 class="mt-3">Inspecting an unmerged dataset</h3>
   If you have unmerged intensity data in a loaded file this can be merged so that all reflections are cast into the same
   asymmetric unit wedge. The following unmerged data file
-  <a href="https://phenix-online.org/phenix_data/cctbx_phenix_doc_data/merged.mtz">XDS_ASCII.HKL</a> suffered 
+  <a href="https://phenix-online.org/phenix_data/cctbx_phenix_doc_data/merged.mtz">XDS_ASCII.HKL</a> suffered
   from problems during data collection but is nevetheless instructive to use in this tutorial.
   Load it into HKLviewer and click on the "Show Intensities" button on the Quick View tab. We note that a full sweep
-  has not been performed during data collection. 
-<br />
-  <img style="max-width: 40%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_unmerged.png' %}">
-<br />
-This might be justified as the crystal has a high symmetry (I 41 2 2).
+  has not been performed during data collection.
+  <br />
+  <img style="max-width: 60%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_unmerged.png' %}">
+  <br />
+  This might be justified as the crystal has a high symmetry (I 41 2 2).
   Clicking the "Merged Intensities" button then merges the reflections
-  into one asymmetric unit wedge. 
-<br />
-  <img style="max-width: 40%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_merged.png' %}">
-<br />
+  into one asymmetric unit wedge.
+  <br />
+  <img style="max-width: 60%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_merged.png' %}">
+  <br />
 
-Clicking the Multiplicities button calculates how many of the unmerged reflections 
-  have been used for deriving the value of each of the merged reflections. 
-<br />
-  <img style="max-width: 40%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_multi.png' %}">
-<br />
-With the multiplicities data it is then 
+  Clicking the Multiplicities button calculates how many of the unmerged reflections
+  have been used for deriving the value of each of the merged reflections.
+  <br />
+  <img style="max-width: 60%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_multi.png' %}">
+  <br />
+  With the multiplicities data it is then
   possible to sort reflections according to how many unmerged reflections they have been averaged over.
 
 
@@ -165,11 +165,11 @@ With the multiplicities data it is then
     It shows as periodic modulation of the diffraction pattern and can cause problems for structure solution unless
     identified and taken into
     account by the software. A TNCS vector is a real space vector and should be determined before structure solution attempts.
-  <h5 class="mt-3">Using Xtriage to illustrate TNCS </h5>
+    <h5 class="mt-3">Using Xtriage to illustrate TNCS </h5>
 
-    It is possible to visualise TNCS with Xtriage if the modulation is strong. HKLviewer makes this visible by computing 
-    normalised amplitudes (E-values) and aligning an expanded sphere of reflections with the TNCS vector emitted by 
-    Xtriage parallel or perpendicular to the screen. The coordinates for the TNCS vector detected by Xtriage is given in 
+    It is possible to visualise TNCS with Xtriage if the modulation is strong. HKLviewer makes this visible by computing
+    normalised amplitudes (E-values) and aligning an expanded sphere of reflections with the TNCS vector emitted by
+    Xtriage parallel or perpendicular to the screen. The coordinates for the TNCS vector detected by Xtriage is given in
     the Xtriage log file and it is also added as a vector on the Vectors tab on the Details tab.
 
     The dataset <a href="https://files.rcsb.org/download/3RBX-sf.cif">3RBX</a> has strong
@@ -182,148 +182,157 @@ With the multiplicities data it is then
     <li>On the Quick View tab, click on the "Show Intensities" button to display the data.</li>
     <li>Click on the "Run Xtriage" button and wait a moment until Xtriage has finished.</li>
     <li>
-    Click on the <a href="../doc_hklviewer/#Xtriage">"Rotate around "TNCS_xtriage vector"</a> button.
+      Click on the <a href="../doc_hklviewer/#Xtriage">"Rotate around "TNCS_xtriage vector"</a> button.
     </li>
   </ul>
 
   <p>
-    The TNCS vector now points upwards parallel to the screen as a dark line emerging from the origin of the 
+    The TNCS vector now points upwards parallel to the screen as a dark line emerging from the origin of the
     reciprocal lattice. In this case the modulation is seen as strong E-values every third layer of reflections
     in reciprocal space indicating that there are three aligned molecules in the asymmetric unitcell giving rise to the
-    TNCS.    
+    TNCS.
 
   </p>
 
-  <img style="max-width: 60%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_xtriageTNCS.png' %}">
+  <img style="max-width: 70%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_xtriageTNCS.png' %}">
 
   <h5 class="mt-3">Using Xtricorder to illustrate TNCS </h5>
 
   <p>
     If the modulation is weak or mostly confined to low resolution reflections then it is not easy to confirm
-    TNCS through visual inspection of E-values. The TNCS correction terms produced by Xtricorder in the TEPS 
-    column still makes this possible. The coordinates for the TNCS vector emitted by Xtricorder is in the header of the mtz
-    file produced by Xtricorder. It is then listed on the 
-<a href="../doc_hklviewer/#how-to-display-space-group-rotation-operators-and-other-vectors">vectors tab</a> and as the
+    TNCS through visual inspection of E-values. However, the TNCS correction terms produced by Xtricorder in the TEPS
+    column still makes this possible. The coordinates for the TNCS vector emitted by Xtricorder is in the 
+    header of the mtz file produced by Xtricorder. It is then listed on the
+    <a href="../doc_hklviewer/#vectors_tab">vectors tab</a> and as the
     buttons on the Quick View tab described <a href="../doc_hklviewer/#Xtricorder">here</a> named "Rotate around TNCS vector"
     and "Slice perpendicular to TNCS vector".
-  <br />The data file <a href="https://edmaps.rcsb.org/coefficients/3syp.mtz">3syp_phases.mtz</a> serves as an illustration.
-  <ul>
-    <li>Open <code>3syp_phases.mtz</code> in the HKLviewer.</li>
-    <li>On the Quick View tab, "Run Xtricorder" button and wait a moment until Xtricorder has finished.</li>
-    <li>
-    Click on the <a href="../doc_hklviewer/#Xtricorder">"Rotate around "TNCS_xtricorder vector"</a> button.
-    </li>
-  </ul>
-  We note that the modulation is confined to the low resolution part of reflections.
+    <br />The data file <a href="https://edmaps.rcsb.org/coefficients/3syp.mtz">3syp_phases.mtz</a> serves as an illustration.
+    <ul>
+      <li>Open <code>3syp_phases.mtz</code> in the HKLviewer.</li>
+      <li>On the Quick View tab, "Run Xtricorder" button and wait a moment until Xtricorder has finished.</li>
+      <li>
+        Click on the <a href="../doc_hklviewer/#Xtricorder">"Rotate around "TNCS_xtricorder vector"</a> button.
+      </li>
+    </ul>
+    We note that the modulation is confined to the low resolution part of reflections.
 
 
-<br/>
-    Pressing the button on the Quick View tab labelled "Rotate around TNCS vector" will then slice the reflections 
+    <br />
+    Pressing the button on the Quick View tab labelled "Rotate around TNCS vector" will then slice the reflections
     with a clip plane width of around 8 units, expand all reflections to P1 and Friedel mates, align the reflections
     with the TNCS vector parallel to the screen, pointing upwards and rotate the sphere of reflections around the TNCS
-    vector. This will show the TNCS modulation as coloured horizontal ripples in the sphere of reflections. 
-<br/>
-  <img style="max-width: 80%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_xtricorderTNCS.png' %}">
-<br/>
+    vector. This will show the TNCS modulation as coloured horizontal ripples in the sphere of reflections.
+    <br />
+    <img style="max-width: 80%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_xtricorderTNCS.png' %}">
+    <br />
 
-    We can also illustrate the modulation by pressing the "Slice perpendicular to TNCS_xtricorder vector" button. 
-    Thereby we can 
-    inspect the modulation layer by layer. We expect every other slice of reflections to have a 
-    strong or weak TNCS correction factor. This is frequently less obvious as the TNCS vector typically 
-    is not completely parallel with a reciprocal space vector with 
+    We can also illustrate the modulation by pressing the "Slice perpendicular to TNCS_xtricorder vector" button.
+    Thereby we can
+    inspect the modulation layer by layer. We expect every other slice of reflections to have a
+    strong or weak TNCS correction factor. This is frequently less obvious as the TNCS vector typically
+    is not completely parallel with a reciprocal space vector with
     integer indices. Therefore a mixture of strong and weak reflections may be present in each slice.
     In the current example there are about 68 TNCS modulation layers alternating between weak and strong reflections.
-<br/>
-  <img style="max-width: 50%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_xtricorderTNCS_layer1.png' %}">
-Layer of strong reflections.
+    <br />
+    <img style="max-width: 50%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_xtricorderTNCS_layer1.png' %}">
+    Layer of strong reflections.
 
-  <img style="max-width: 50%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_xtricorderTNCS_layer2.png' %}">
-Layer of weak reflections.
-<br/>
-  The "+" and "-" buttons allows us to easily step through each layer. 
+    <img style="max-width: 50%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_xtricorderTNCS_layer2.png' %}">
+    Layer of weak reflections.
+    <br />
+    The "+" and "-" buttons makes it easy to step through each layer of reflections perpendicular to the
+    TNCS vector.
   </p>
-  We could also have used Xtriage to detect TNCS but for this dataset the TNCS modulation is not strong enough to make 
-  its presence easily recognisable from E-values.
+  We could also have used Xtriage to detect TNCS but for this dataset the TNCS modulation is not strong enough
+  to be easily noticed visually from E-values.
 
-
-<a name="inspecting_a_twin_law"></a>
+  <a name="inspecting_a_twin_law"></a>
   <h3 class="mt-4">Inspecting a twin law</h3>
 
   <p>
     The phenix tutorial with the file,
     <a href="https://phenix-online.org/phenix_data/cctbx_phenix_doc_data/porin.mtz">porin.mtz</a>, illustrates twinning.
     Follow the steps below:
-  </p>
-
-  <ul>
-    <li>Load the file in the HKLviewer and display the dataset “F-obs,SIGF-obs”.</li>
-    <li>Click on the "Run Xtriage" button and wait a moment until Xtriage has finished.</li>
-    <li>
-    Click on the <a href="../doc_hklviewer/#Xtriage">"Slice amplitudes perpendicular to twin axis"</a> button.
-    </li>
-    <li>Compare the list of twin operators in Xtriage log at the bottom with the list of twin operators present on
-    the <a href="../doc_hklviewer/#how-to-display-space-group-rotation-operators-and-other-vectors">vectors tab</a>.
-    </li>
-    <li>On the drop down list of twin operators next to the <a href="../doc_hklviewer/#Xtriage">"Slice amplitudes 
-    perpendicular to twin axis"</a> button we select the twin operator with the lowest R-value. This is the operator 
-    h,-h-k,-l labelled "2-fold_twin_6".
-    </li>
-  </ul>
-  <img style="max-width: 90%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_twinning1.png' %}">
-  <img style="max-width: 90%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_twinning2.png' %}">
+    <ul>
+      <li>Load the file in the HKLviewer and display the dataset “F-obs,SIGF-obs”.</li>
+      <li>Click on the "Run Xtriage" button and wait a moment until Xtriage has finished.</li>
+      <li>
+        Click on the <a href="../doc_hklviewer/#Xtriage">"Slice amplitudes perpendicular to twin axis"</a> button.
+      </li>
+      <li>
+        Compare the list of twin operators in Xtriage log at the bottom with the list of twin operators present on
+        the vectors tab.
+        <img style="max-width: 90%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_twinning1.png' %}">
+      </li>
+      <li>
+        On the drop down list of twin operators
+        we select the twin operator with the lowest R-value. This is the operator h,-h-k,-l labelled "2-fold_twin_6".
+        <img style="max-width: 90%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_twinning2.png' %}">
+      </li>
+    </ul>
 
   <p class="mt-3">
     To inspect data values of reflections related by the twin operator right-click a reflection in the view.
     It will bring up two tooltips with the hkl indices at the end of two vectors from the reciprocal space origin pointing to
     the twin reflections. Due to the clip plane, the vectors may not be fully visible. Double click one of the reflections
     to bring up the standard tooltip with all other values represented by this reflection (dres, F-obs, SIGF-obs, R-free-flags).
-    Bring up the table of reflections by right-clicking the amplitudes dataset in the table of datasets
-    on the <a href="../doc_hklviewer/#how-to-show-a-table-of-one-or-more-dataset-values">details tab</a>.
+    Bring up the table of data values of the "F-obs,SIGF-obs" dataset by right-clicking it in the table of
+    <a href="../doc_hklviewer/#show_table_of_datasets">datasets on the details tab</a>.
 
-    Right-clicking a reflection will highlight the data value in the “Tabulated Reflection data” window. The HKL indices in the
+    Right-clicking a reflection will then highlight the data value in the “Tabulated Reflection data” window. The HKL indices in the
     table are the original from file. Since the twin operator is not part of the spacegroup the hkl index in the tooltip of a
     twin related reflection may differ from the HKL index generated by P1 or Friedel mates expansion highlighted in the
     Tabulated Reflection Data.
   </p>
   <img style="max-width: 90%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_twinning3.png' %}">
-
+<br />  
+As in the example above with a TNCS vector perpendicular to the screen the "+" and "-" buttons 
+  makes it easy to step through layer of reflections perpendicular to the twin axis.
 
   <a name="inspecting_information_content"></a>
-  <h3 class="mt-4">Inspecting information content in reflections with low I/SigI value</h3>
+  <h3 class="mt-4">Inspecting information content in reflections with I/SigI&lt;0.5</h3>
   The data file <a href="https://files.rcsb.org/download/6HUF-sf.cif">6HUF-sf.cif</a> is useful for illustrating
-  that sometimes reflections can have very small I/SigI values but still of use for structure solution software.
+  that sometimes reflections can have very small I/SigI values but still be of use for structure solution software.
   Convert it to mtz format with the command <code>iotbx.cif_as_mtz 6HUF-sf.cif</code>. Then
   <ul>
-    <li>Load the file in the HKLviewer and click "Run Xtricorder" on the Quick View tab and wait a moment 
-    until it has finished.
+    <li>
+      Load the file 6HUF-sf.mtz in the HKLviewer and click "Run Xtricorder" on the Quick View tab and wait a moment
+      until it has finished.
     </li>
-    <li>Click the "I/SigI>=2" button on the Quick View tab. This will generate an additional dataset of I/SigI values.</li>
+    <li>
+      Click the "I/SigI>=2" button on the Quick View tab. This will generate an additional dataset of
+      I/SigI values labelled "IoverSigI ".
+    </li>
     <li>On the Details tab find the INFO dataset in the table of datasets and then right-click it to bring up the context menu.</li>
     <li>Select the "Make new dataset from this dataset and another datasset" menu item.</li>
-    <li>In the new dataset dialog fill out the dialog box with the line 
-      <code>newarray=array1.select(array2.data()<0.5)</code>.</li>
-    <li>Select the IoverSigI dataset to represent <code>array2</code></li>
+    <li>
+      In the new dataset dialog fill out the dialog box with the line
+      <code>newarray=array1.select(array2.data()<0.5)</code>.
+    </li>
+    <li>Select the "IoverSigI" dataset in the dropdown list to represent <code>array2</code>.</li>
     <li>Give the column label the name "Info_ISigI_0.5" and press the "Compute new reflection dataset" button</li>
   </ul>
- <img style="max-width: 70%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_INFO.png' %}">
-<br />
-  This will generate and display a new dataset labelled "Info_ISigI_0.5" of INFO values for reflections that 
+  <img style="max-width: 70%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_INFO.png' %}">
+  <br />
+  This will generate and display a new dataset labelled "Info_ISigI_0.5" of INFO values for reflections that
   have I/SigI&lt;0.5. There are only about 9000 reflections.
-  Now we want to see which of those have INFO values larger than 0.2. To do this we go to the Binning tab.
+  To see which of those have INFO values larger than 0.2 bits go to the Binning tab:
   <ul>
-    <li>Select INFO from the drop down list to bin according to the INFO values.</li>
+    <li>Select INFO from the drop down list to bin the "Info_ISigI_0.5" dataset according to INFO values.</li>
     <li>Set the number of bins to 3 or larger.</li>
     <li>Enter 0.2 as the lower bin value in the second row.</li>
     <li>Deselect the first bin by un-ticking the checkbox to the right.</li>
   </ul>
- <img style="max-width: 70%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_INFO2.png' %}">
+  <img style="max-width: 70%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_INFO2.png' %}">
   <br />
   This will then display only those reflections with more than 0.2 bits information content but with I/SigI&lt;0.5.
-  As we see this is more than 6000 reflections or 10 percent of the dataset. So this is a significant number of reflections.
- <img style="max-width: 70%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_INFO3.png' %}">
+  As we see this is more than 6000 reflections or almost 10 percent of the dataset. This is a significant number
+  of reflections. Omitting such a large number of reflections could adversely impact solving the structure.
+  <br />
+  <img style="max-width: 70%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_INFO3.png' %}">
 
 
-<br />
+  <br />
 
   <!----------------------- EDIT END ---------------------------->
   <!-- DO NOT EDIT ANYTHING BELOW!!!! -->
