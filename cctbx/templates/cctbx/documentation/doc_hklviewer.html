@@ -280,16 +280,28 @@
     0.1 of the origin peak height is detected in the intensities.
     The INFO column will be absent if the original mtz file only contained amplitudes and not intensities.
     Once the mtz file produced by Xtricorder has been loaded the HKLviewer will display new buttons on the Quick View
-    tab for visualising the TNCS modulation through the TEPS data which is very sensitive. Anisotropy can be shown 
-    from displaying the anisotropy correction terms and the 
-    principal axes of the corresponding tensor. If it looks ellipsoidal then the dataset is very anisotropic.
+    tab for visualising the TNCS modulation through the TEPS data which is very sensitive. 
     <br />    
     Above is a snapshot of the buttons available (blue bubble) if there is TNCS in the dataset analysed by Xtricorder.
     These are buttons are for visualising reflections with information content less than 0.35 bits, for
     for visualising anisotropy and for visualising TNCS correction terms. Reflections with information less
-    than 0.35 bits roughly corresponds to I/SigI&lt;2.
+    than 0.35 bits roughly corresponds to I/SigI&lt;2 but reflections with low I/SigI values may occasionally have 
+    high information content.
     A tutorial on how to inspect TNCS modulation in a dataset is given in the
     <a href="../tuto_hklviewer/#inspecting-tncs-modulation-in-a-dataset">tutorial section</a>.
+    There is also a <a href="../tuto_hklviewer/#inspecting_information_content">tutorial</a>
+    on how to reveal spot reflections with high information content but low I/SigI values.
+    <br />
+    Anisotropy can be shown by clicking the "Show anisotropy principal axes" or "Rotate around one anisotropy axis"
+    button. This will display the anisotropy correction terms of the reflections, sort them into 8 bins and 
+    display only the reflections with very strong or very weak correction terms. The result is a hollow sphere of
+    reflections encompassing a smaller sphere in the centre of reciprocal space. If the innermost sphere looks 
+    ellipsoidal then the dataset is very anisotropic. Below is an illustration of a rather anisotropic dataset.
+  <br />
+    <img style="max-width: 50%;" src="{% static 'cctbx/img/hklviewer/doc_hklviewer_aniso.png' %}">
+
+
+
 
     <a name="XDSGUI"></a>
     <h5 class="mt-4">Integration in XDSGUI</h5>
