@@ -138,12 +138,12 @@
 <p />
   <h5 class="mt-4">Merged Intensities and Multiplicities</h5>
   Given an unmerged dataset of intensities, the "Merged Intensities" button will merge the symmetry-related
-  reflections and average over anomalous data, i.e. put reflections into just one asymmetric unit wedge if that is not 
+  reflections and average over anomalous data, i.e. put reflections into just one asymmetric unit wedge if that is not
   already the case. The "Multiplicities" button will create a dataset of integers counting
   how many symmetry related reflections was used to produce a reflection in the merged array. These two buttons
   are using the  <a href="https://cctbx.github.io/cctbx/cctbx.miller.html#cctbx.miller.array.merge_equivalents">
-  merge_equivalents function<a/> in CCTBX. An example using these buttons is given in the 
-  <a href="../tuto_hklviewer/#inspecting-an-unmerged-dataset">tutorials section</a>.
+  merge_equivalents function<a/> in CCTBX. An example using these buttons is given in the
+  <a href="../tuto_hklviewer/#inspecting_unmerged_dataset">tutorials section</a>.
 
     </p>
     <!----------------------------------------------------------------------------->
@@ -257,12 +257,15 @@
     Details tab. The twin operator which Xtriage computes to have the lowest R-obs value is usually the most interesting.
     It is found in the list of twin operators in the Xtriage tab and matches one of the rotation operators on the
     Vectors tab found on the Details tab.
-    A tutorial on how to inspect a twin law is given in the <a href="../tuto_hklviewer/#inspecting-a-twin-law">tutorial section</a>.
+    A tutorial on how to inspect a twin law is given as a
+<a href="../tuto_hklviewer/#inspecting_a_twin_law">tutorial</a>.
     <br />
-    Xtriage will also detect TNCS modulation with a patterson peak height larger than 
+    Xtriage will also detect TNCS modulation with a patterson peak height larger than
     0.1 of the origin peak height. If present, buttons will be available allowing inspection of the modulation
-    from amplitudes or intensities converted into E-values. If the modulation is weak it may not be visible to the naked eye.
-    Below is a snapshot of the buttons available (red bubble) if there is twinning and TNCS in the dataset analysed by Xtriage.
+    from amplitudes or intensities converted into E-values. If the modulation is weak it may not be
+    visible to the naked eye.
+    Below is a snapshot of the buttons available (red bubble) if there is twinning and TNCS in the dataset
+    analysed by Xtriage.
     <br />
     <br />
 
@@ -273,34 +276,33 @@
     Xtricorder is part  <a href="https://doi.org/10.1107/S2059798320014746">Phasertng</a> distributed within the
     Phenix and the CCP4 suite. Pressing the Xtricorder button it will analyse an mtz file in several ways
     and produces an output file with several additional columns. The output log file will subsequently be loaded in
-    the HKLviewer as a tab next to the info and verbose text output. 
+    the HKLviewer as a tab next to the info and verbose text output.
     The most interesting new columns are the INFO, the ANISO and the TEPS columns. These columns
     are the information content of each reflection, the anisotropy correction terms and the TNCS correction
-    terms, respectively. The TEPS data is not present if no patterson peak height larger than 
+    terms, respectively. The TEPS data is not present if no patterson peak height larger than
     0.1 of the origin peak height is detected in the intensities.
     The INFO column will be absent if the original mtz file only contained amplitudes and not intensities.
     Once the mtz file produced by Xtricorder has been loaded the HKLviewer will display new buttons on the Quick View
-    tab for visualising the TNCS modulation through the TEPS data which is very sensitive. 
-    <br />    
+    tab for visualising the TNCS modulation through the TEPS data which is very sensitive.
+    <br />
     Above is a snapshot of the buttons available (blue bubble) if there is TNCS in the dataset analysed by Xtricorder.
     These are buttons are for visualising reflections with information content less than 0.35 bits, for
     for visualising anisotropy and for visualising TNCS correction terms. Reflections with information less
-    than 0.35 bits roughly corresponds to I/SigI&lt;2 but reflections with low I/SigI values may occasionally have 
+    than 0.35 bits roughly corresponds to I/SigI&lt;2 but reflections with low I/SigI values may occasionally have
     high information content.
     A tutorial on how to inspect TNCS modulation in a dataset is given in the
-    <a href="../tuto_hklviewer/#inspecting-tncs-modulation-in-a-dataset">tutorial section</a>.
+    <a href="../tuto_hklviewer/#inspecting_TNCS_modulation">tutorial section</a>.
     There is also a <a href="../tuto_hklviewer/#inspecting_information_content">tutorial</a>
-    on how to reveal spot reflections with high information content but low I/SigI values.
+    on how to reveal reflections with high information content but low I/SigI values.
     <br />
     Anisotropy can be shown by clicking the "Show anisotropy principal axes" or "Rotate around one anisotropy axis"
-    button. This will display the anisotropy correction terms of the reflections, sort them into 8 bins and 
+    button. This will display the anisotropy correction terms of the reflections, sort them into 8 bins and
     display only the reflections with very strong or very weak correction terms. The result is a hollow sphere of
-    reflections encompassing a smaller sphere in the centre of reciprocal space. If the innermost sphere looks 
+    reflections encompassing a smaller sphere in the centre of reciprocal space. If the innermost sphere looks
     ellipsoidal then the dataset is very anisotropic. Below is an illustration of a rather anisotropic dataset.
   <br />
-    <img style="max-width: 50%;" src="{% static 'cctbx/img/hklviewer/doc_hklviewer_aniso.png' %}">
-
-
+    <img style="max-width: 70%;" src="{% static 'cctbx/img/hklviewer/doc_hklviewer_aniso.png' %}">
+    <br /> Taking this into account during structure solution will be important.
 
 
     <a name="XDSGUI"></a>
@@ -819,7 +821,7 @@
     </p>
 
     <!----------------------------------------------------------------------------->
-    
+
     <a name="show_table_of_datasets"></a>
     <h3 class="mt-4">How to show a table of one or more dataset values</h3>
 
@@ -828,7 +830,7 @@
       be tabulated from the context menu. First highlight the datasets of interest, then right click these,
       then click on <code>Show a table of &lt;some datasets&gt;...</code>.
       This brings up a window with tabulated data as it is stored in the reflection data file as well as
-      the ones that may have been created from one of the predefined buttons or 
+      the ones that may have been created from one of the predefined buttons or
        <a href="#how-to-make-a-new-dataset">as decribed above</a>.
     </p>
 
