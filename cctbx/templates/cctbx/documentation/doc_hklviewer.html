@@ -136,6 +136,7 @@
     to make all reflections regardless of resolution shell appear on average to have the same strength.
     Anisotropic or tNCS correction is not applied and currently the sigmas are not converted.
 <p />
+<a name="merged_Intensities"></a>
   <h5 class="mt-4">Merged Intensities and Multiplicities</h5>
   Given an unmerged dataset of intensities, the "Merged Intensities" button will merge the symmetry-related
   reflections and average over anomalous data, i.e. put reflections into just one asymmetric unit wedge if that is not
@@ -302,7 +303,7 @@
     ellipsoidal then the dataset is very anisotropic. Below is an illustration of a rather anisotropic dataset.
   <br />
     <img style="max-width: 70%;" src="{% static 'cctbx/img/hklviewer/doc_hklviewer_aniso.png' %}">
-    <br /> Taking this into account during structure solution will be important.
+    <br /> Taking anisotropy into account when solving the structure is important.
 
 
     <a name="XDSGUI"></a>
@@ -316,8 +317,9 @@
     In the XDSGUI this should be entered under the button labelled "User defined command 3" found on the "Further analyses"
     part of the "tools" tab as illustrated on the screenshot of the
     <a href="{% static 'cctbx/img/hklviewer/XDSGUIscreenshot.jpg' %}">XDSGUI with the HKLviewer here</a>.
-    Users of XDS may be particularly interested in merging intensities on the fly as
-    <a href="#merged-intensities-and-multiplicities">described above</a>.
+    Users of XDS may be interested in merging intensities on the fly as
+    <a href="#merged_Intensities">described above</a> or examining multiplicities as in the 
+    <a href="../tuto_hklviewer/#inspecting_unmerged_dataset">tutorial here</a>.
 
 
     <!----------------------------------------------------------------------------->
@@ -865,7 +867,7 @@
 
     <h4 class="mt-4">Full list of default PHIL parameters</h4>
     The HKLviewer is controlled by <a href="../doc_low_phil/">PHIL</a>  parameter values. It is not necessary to know
-    these when you are using the HKLviewer from its GUI. The complete list of parameters are given here to serve as
+    these when you are using the HKLviewer from the Qt GUI. The complete list of parameters are given here to serve as
     a reference when defining custom buttons for the Quick View tab as <a href="#user-defined-buttons"> described above</a>
     as well as for scripting the HKLviewer.
 

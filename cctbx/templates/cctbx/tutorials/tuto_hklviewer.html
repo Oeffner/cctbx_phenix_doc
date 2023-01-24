@@ -285,14 +285,16 @@ viewer {
     Tabulated Reflection Data.
   </p>
   <img style="max-width: 90%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_twinning3.png' %}">
-<br />
-As in the example above with a TNCS vector perpendicular to the screen the "+" and "-" buttons
+  <br />
+  As in the example above with a TNCS vector perpendicular to the screen the "+" and "-" buttons
   makes it easy to step through layer of reflections perpendicular to the twin axis.
 
   <a name="inspecting_information_content"></a>
   <h3 class="mt-4">Inspecting information content in reflections with I/SigI&lt;0.5</h3>
-  The data file <a href="https://files.rcsb.org/download/6HUF-sf.cif">6HUF-sf.cif</a> is useful for illustrating
-  that sometimes reflections can have very small I/SigI values but still be of use for structure solution software.
+  The data file <a href="https://files.rcsb.org/download/6HUF-sf.cif">6HUF-sf.cif</a> with about 69000 reflections
+  is useful for illustrating
+  that sometimes reflections can have very small I/SigI values but still contain useful information, 
+  <a href="https://doi.org/10.1107/S2059798320001588">Acta Cryst. (2020). D76, 238-247</a>.
   Convert it to mtz format with the command <code>iotbx.cif_as_mtz 6HUF-sf.cif</code>. Then
   <ul>
     <li>
@@ -326,7 +328,7 @@ As in the example above with a TNCS vector perpendicular to the screen the "+" a
   <img style="max-width: 70%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_INFO2.png' %}">
   <br />
   This will then display only those reflections with more than 0.2 bits information content but with I/SigI&lt;0.5.
-  As we see this is more than 6000 reflections or almost 10 percent of the dataset. This is a significant number
+  As we see this is almost 6000 reflections or almost 10 percent of the dataset. This is a significant number
   of reflections. Omitting such a large number of reflections could adversely impact solving the structure.
   <br />
   <img style="max-width: 70%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_INFO3.png' %}">
