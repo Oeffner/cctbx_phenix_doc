@@ -47,8 +47,8 @@
 
   <p class="mt-3">
     The first statement <code>newarray._data = flex.abs(array1.data())/array1.sigmas()</code> computes the
-    I/SigI of all data values but with the absolute values of the intensities since there appear to be a significant number
-    of negative intensities.<br>
+    I/SigI of all data values. In this case we decided to use the absolute values of the intensities since there 
+    appear to be a significant number of negative intensities.<br>
     The <code>newarray</code> is always initialised to a copy of the original array (here representing "IMEAN,SIGIMEAN").<br>
     For I/SigI data we are not interested in the sigma values themselves. So we discard the sigmas array with the second
     statement <code>newarray._sigmas = None</code>.<br>
@@ -310,7 +310,7 @@ viewer {
     <li>Select the "IoverSigI" dataset in the dropdown list to represent <code>array2</code>.</li>
     <li>Give the column label the name "Info_ISigI_0.5" and press the "Compute new reflection dataset" button</li>
   </ul>
-  <img style="max-width: 70%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_INFO.png' %}">
+  <img style="max-width: 80%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_INFO.png' %}">
   <br />
   This will generate and display a new dataset labelled "Info_ISigI_0.5" of INFO values for reflections that
   have I/SigI&lt;0.5. There are only about 9000 reflections.
@@ -321,7 +321,7 @@ viewer {
     <li>Enter 0.2 as the lower bin value in the second row.</li>
     <li>Deselect the first bin by un-ticking the checkbox to the right.</li>
   </ul>
-  <img style="max-width: 70%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_INFO2.png' %}">
+  <img style="max-width: 80%;" src="{% static 'cctbx/img/tutorials/tuto_hklviewer_INFO2.png' %}">
   <br />
   This will then display only those reflections with more than 0.2 bits information content but with I/SigI&lt;0.5.
   As we see this is almost 6000 reflections or almost 10 percent of the dataset. This is a significant number
