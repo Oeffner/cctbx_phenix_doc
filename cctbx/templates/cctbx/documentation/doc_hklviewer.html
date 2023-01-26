@@ -134,7 +134,7 @@
     in the CCTBX.
     This rescales amplitudes by inverting B-factor and scattering factor attenuation
     to make all reflections regardless of resolution shell appear on average to have the same strength.
-    Anisotropic or tNCS correction is not applied and currently the sigmas are not converted.
+    Anisotropic or TNCS correction is not applied and currently the sigmas are not converted.
 <p />
 <a name="merged_Intensities"></a>
   <h5 class="mt-4">Merged Intensities and Multiplicities</h5>
@@ -143,8 +143,8 @@
   already the case. The "Multiplicities" button will create a dataset of integers counting
   how many symmetry related reflections was used to produce a reflection in the merged array. These two buttons
   are using the  <a href="https://cctbx.github.io/cctbx/cctbx.miller.html#cctbx.miller.array.merge_equivalents">
-  merge_equivalents function<a/> in CCTBX. An example using these buttons is given in the
-  <a href="../tuto_hklviewer/#inspecting_unmerged_dataset">tutorials section</a>.
+  merge_equivalents function<a/> in CCTBX. An example using these buttons is given as a
+  <a href="../tuto_hklviewer/#inspecting_unmerged_dataset">tutorial here</a>.
 
     </p>
     <!----------------------------------------------------------------------------->
@@ -419,14 +419,16 @@
     <a name="expand_reflections"></a>
     <h3 class="mt-4">How to expand reflections</h3>
     <p>
-      Processed reflection data usually are stored with only the reflections that are unique under symmetry
-      operations, meaning that no pairs of reflections happen to be mapped to the same reflections after symmetry
+      Merged reflection data is usually stored with only the reflections that are unique under symmetry
+      operations, meaning that no more than one data value is associated with an HKL index after symmetry
       operations associated with the space group
       have been applied. This subset of the recorded reflections are for convenience stored in the same wedge of the sphere
       of all reflections. For the P1 space group the wedge will be shaped as a half-sphere given that reflections present in
       such a wedge are the minimum number of reflections necessary for a complete (up to a given resolution) P1 data set,
       disregarding Friedel mates. For a high symmetry spacegroup such as a cubic spacegroup the wedge of reflections will
-      be much smaller somewhat resembling a parsnip with sharp edges.<br>
+      be much smaller somewhat resembling a parsnip with sharp edges. An example of the difference between merged and 
+      unmerged data is given as a <a href="../tuto_hklviewer/#inspecting_unmerged_dataset">tutorial here</a>.
+<br>
       There are situations where it is preferable to inspect reflection data as if it had been stored as P1 data
       including Friedel mates. This is done by ticking the "Expand reflections" checkbox on the "Expansion"
       tab. This will apply the spacegroup rotations to all reflections and display them. If the reflection data file
@@ -477,12 +479,12 @@
     </ol>
 
     <img style="max-width: 100%;" src="{% static 'cctbx/img/hklviewer/doc_hklviewer_004.png' %}">
-    Option 1 and 2 disables rotating with the mouse and only allows zooming and translating with the mouse.
-    Option 3 only applies to reciprocal vectors and does not apply if the selected vector from
-    the drop-down list is itself a real space vector (such as a tNCS vector) or a rotation axis defined by a rotation operator.
-    Option 3 will also display an
-    equation that is satisfied for points lying in this plane, give or take a bit of width of the deisplayed reflections
-    as well as the width of the clip planes.
+    Option 2 and 3 disables rotating with the mouse and only allows zooming and translating with the mouse.
+    Option 3 only applies to selected vectors which are defined in terms of reciprocal coordinates (hkl) on the
+    Vectors tab. It does not apply if the selected vector from the drop-down list is defined as a real space 
+    vector (such as a TNCS vector) or a rotation axis defined by a rotation operator.
+    Option 3 will also display an equation that is satisfied for reflections points lying in this plane, give or take 
+    a bit of width of the displayed reflections as well as the width of the clip planes.
 
     By using <a href="#how-to-add-user-defined-vectors">user defined vectors</a> it is then possible to orient
     the sphere of reflections in a in a well defined manner and slice it with a clip plane.
@@ -491,9 +493,9 @@
     <h3 class="mt-5">How to sort reflections into bins</h3>
 
     <p>
-      From the Binning tab that is found below the table of datasets on the Details tab
-      a data set can be sorted into bins according to resolution. If more data sets are present in the reflection
-      file it can also be sorted according to values in those data sets. The number of bins desired can be set from the spin
+      From the Binning tab that is found below the table of datasets on the Details tab a data set can be 
+      sorted into bins according to resolution. If more data sets are present in the reflection file it 
+      can also be sorted according to values in those other data sets. The number of bins desired can be set from the spin
       control to a maximum of 40. By default HKLviewer will attempt to divide  the currently displayed data into bins
       having about the same number of reflections in each bin. This can be overwritten by entering a preferred threshold
       for a particular bin row under the "lower bin value" column.
@@ -538,11 +540,11 @@
     <h5 class="mt-5">Bin dataset according to values in another dataset</h5>
 
     <p class="mt-3">
-      Data can also be binned against other data values by selecting the desired data value for
-      binning from the drop-down list.
+      As mentioned above data can be binned against other data values by selecting the desired data, sigmas 
+      or phases for binning from the drop-down list.
     </p>
 
-    <img style="max-width: 50%;" src="{% static 'cctbx/img/hklviewer/doc_hklviewer_011.png' %}">
+    <img style="max-width: 70%;" src="{% static 'cctbx/img/hklviewer/doc_hklviewer_011.png' %}">
 
     <p class="mt-3">
       Below is the data set FP,SIGFP binned according to the sigmas found in the data set but only
@@ -570,7 +572,9 @@
       On the Vectors tab that is found below the table of datasets on the Details tab
       various vectors can be displayed in reciprocal space. These are the rotation axes given by
       the space group as well as vectors defined by the user either in reciprocal or in real space fractional coordinates.
-      Mtz files that have been processed by Xtricorder may in addition also provide a tNCS vector and
+      Mtz files that have been analysed by Xtriage may provide a TNCS vector as well as rotation axes of proposed
+      twinning operators.
+      Mtz files that have been processed by Xtricorder may also provide a TNCS vector as well as
       principal axes of the anisotropy tensor. In the HKLviewer reciprocal space or real space vectors are
       defined with (0,0,0) as their origin so only their end coordinates are listed in the table. Whereas vectors
       defined as real space or reciprocal space vectors are displayed with their exact length
@@ -585,7 +589,7 @@
       as defined by the spacegroup P 31 2 1.
       If only one vector is drawn the reflections can be oriented with respect to the vector being either parallel
       or perpendicular to the screen. It is then possible to also rotate the reflections around that vector which can be
-      helpful for examining features in the dataset such as tNCS modulation.
+      helpful for examining features in the dataset such as TNCS modulation.
     </p>
 
     <!----------------------------------------------------------------------------->
@@ -677,14 +681,16 @@
       dataset" menu item. This invokes the "Create a new reflection dataset" dialog.
     </p>
 
-    <img style="max-width: 60%;" src="{% static 'cctbx/img/hklviewer/doc_hklviewer_022.png' %}">
+    <img style="max-width: 80%;" src="{% static 'cctbx/img/hklviewer/doc_hklviewer_022.png' %}">
 
     <p class="mt-3">
       In the textbox a python expression that defines the new dataset, newarray, can be entered.
       Below that, a label for the dataset should also be entered. Pressing the "Compute new reflection dataset" button then
       parses and executes the python expression. If succesful the new dataset with the specified column label will appear
       at the bottom of the table of existing datasets and automatically be displayed in the viewer. For convenience
-      newarray is initialised to a copy of array1 (here representing "I,SIGI").
+      newarray is initialised to a copy of array1 meaning that all variables of this class such as
+       _data, _sigmas, _indices arrays and _info class are copies of the same variables in array1. The objective of creating a 
+      new reflection dataset often only amounts to changing the values of _data and perhaps the _sigmas arrays.
     </p>
 
     <!----------------------------------------------------------------------------->
@@ -866,11 +872,65 @@
       and <a href="http://cci.lbl.gov/docs/cctbx/doc_low_flex_array/">here</a>.
     </p>
 
+
+    <!----------------------------------------------------------------------------->
+
+    <h3 class="mt-4">Commandline Options</h3>
+    Commandline options available when invoking HKLviewer are:
+    <ul>
+      <li>
+       <code>hklin=reflection_filename</code> or just <code>reflection_filename</code> tells HKLviewer to
+        load the reflection file with the name specified.
+      </li>
+      <li>
+       <code>remove_settings</code> for deleting all persisted user settings such as colour and reflection size
+        schemes from your PC. Next time HKLviewer is started factory default settings will be used.
+      </li>
+      <li>
+       <code>show_master_phil</code> for printing the list of default PHIL parameters
+        as <a href="#default_PHIL"> described below</a>
+      </li>
+      <li>
+       <code>devmode</code> for invoking the Chromium browser debugger in a separate window.
+      </li>
+      <li>
+       <code>UseOSBrowser=&lt;browser_name&gt;</code> for using a particular browser when running 
+      HKLviewer from python script.
+      </li>
+      <li>
+       <code>closing_time=&lt;seconds&gt;</code> instructs HKLviewer to run for at most 2*seconds.
+        This is useful during regression tests.
+      </li>
+      <li>
+       <code>output_filename=&lt;filename&gt;</code> instructs HKLviewer to write all printed output to the specified file.
+      </li>
+      <li>
+       <code>phil_file=&lt;filename&gt;</code> instructs HKLviewer to display a dataset in a manner 
+        specified by the user defined PHIL strings in the file named filename.
+      </li>
+      <li>
+       <code>image_file=&lt;imagename&gt;</code> instructs HKLviewer to save an image of what is displayed in the browser.
+        This is only available if <code>phil_file=&lt;filename&gt;</code> has also been specified. Useful for debugging.
+      </li>
+      <li>
+       <code>verbose=&lt;[1;4],threadingmsg,frustum,angles,vector,orientmsgm,browser&gt;</code> 
+        Instruct HKLviewer to print more or less verbose information with a combination of
+        keywords and or numbers. verbose=0 prints the least information whereas verbose=4 prints overly detailed
+        information when using the HKLviewer. If verbose=&lt;some_string&gt; which is a concatenation of 
+        one or more of the strings &lt;threadingmsg,frustum,angles,vector,orientmsgm,browser&gt; this will print 
+        debugging information related to semaphores guarding threads, visible reflection indices, 
+        imposed rotation angles, current orientation matrix and messages from the webbrowser respectively.
+      </li>
+
+    </ul>
+    <!----------------------------------------------------------------------------->
+
+    <a name="default_PHIL"></a>
     <h4 class="mt-4">Full list of default PHIL parameters</h4>
     The HKLviewer is controlled by <a href="../doc_low_phil/">PHIL</a>  parameter values. It is not necessary to know
     these when you are using the HKLviewer from the Qt GUI. The complete list of parameters are given here to serve as
     a reference when defining custom buttons for the Quick View tab as <a href="#user-defined-buttons"> described above</a>
-    as well as for scripting the HKLviewer.
+    as well as for scripting the HKLviewer from a cctbx.python prompt.
 
 <pre><code>
 openfilename = None
@@ -1272,7 +1332,7 @@ use_wireframe = False
   .type = bool
 </code></pre>
 
-    <!----------------------------------------------------------------------------->
+
 
     <h3 class="mt-4">Bug reports or queries</h3>
 
