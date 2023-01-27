@@ -45,12 +45,12 @@
 
   </p>
   <img style="max-width: 100%;" src="{% static 'cctbx/img/hklviewer/LookFeel.png' %}">
-
-  <h4>Background colour</h4>
+  <h5>Background colour</h5>
+<p>
   The background colour of the graphics rendering window can be adjusted from the background colour menu item from the
   File menu.
-
-  <h4>HKLviewer Settings dialog</h4>
+</p>
+  <h5>HKLviewer Settings dialog</h5>
   The "HKLviewer Settings" dialog that is invoked from the "File|Settings" (or Preferences) menu item lets you adjust
   the mouse speed and the font size for the QtGui as well as for the legends and tooltips displayed for the 3D view (Browser).
   Tooltips can be set to only pop up when a reflection is clicked.
@@ -61,8 +61,9 @@
   <h3 class="mt-4">Opening a file</h3>
 
   <p>
-    A reflection file can be openend from the "File | Open" menu item. Alternatively the filename can be
-    specified as an argument on the command line where the CCTBX environment has been invoked:
+    Reflection files of the type .mtz., .sca, .hkl, .cif can be openend from the "File | Open" menu item. The last
+    three file types are text files and wil open correctly as long as they contain space group information.
+    Alternatively the filename can be specified as an argument on the command line where the CCTBX environment has been invoked:
   </p>
 
 <pre class="CodeGreen"><code>cctbx.HKLviewer 3EIL.mtz</code></pre>
@@ -244,10 +245,10 @@
 
     <!----------------------------------------------------------------------------->
 
-    <h3 class="mt-4">Integration with other programs</h3>
+    <h3 class="mt-4">Xtriage, Xtricorder and XDSGUI Integration</h3>
 
     <a name="Xtriage"></a>
-    <h5 class="mt-4">Xtriage integration</h5>
+    <h5 class="mt-4">Xtriage</h5>
     Xtriage is also a part of the CCTBX and Phenix. An amplitude or intensity dataset that is displayed in the
     HKLviewer can be processed with Xtriage by clicking on the "Xtriage" button on top on the "Quick View" tab
     of the HKLviewer controls. Once it has finished a log file from the Xtriage run will be present in the bottom
@@ -273,7 +274,7 @@
     <img style="max-width: 100%;" src="{% static 'cctbx/img/hklviewer/XtricorderXtriagebuttons.png' %}">
 
     <a name="Xtricorder"></a>
-    <h5 class="mt-4">Xtricorder integration</h5>
+    <h5 class="mt-4">Xtricorder</h5>
     Xtricorder is part  <a href="https://doi.org/10.1107/S2059798320014746">Phasertng</a> distributed within the
     Phenix and the CCP4 suite. Pressing the Xtricorder button it will analyse an mtz file in several ways
     and produces an output file with several additional columns. The output log file will subsequently be loaded in
@@ -308,7 +309,7 @@
 
 
     <a name="XDSGUI"></a>
-    <h5 class="mt-4">Integration in XDSGUI</h5>
+    <h5 class="mt-4">XDSGUI</h5>
     The HKLviewer can be integrated with the
     <a href="https://strucbio.biologie.uni-konstanz.de/xdswiki/index.php/Main_Page">XDSGUI</a> to make it easy to visualise
     and inspect newly integrated datasets. This is a lightweight implementation that relies on the presence of a Phenix
@@ -334,7 +335,7 @@
 
     <p>
       The reflections are coloured according to
-      <a href="https://matplotlib.org/examples/color/colormaps_reference.html">colour gradient maps</a> of
+      <a href="https://matplotlib.org/stable/gallery/color/colormap_reference.html">colour gradient maps</a> of
       the Python module <a href="https://matplotlib.org/examples/color/colormaps_reference.html">matplotlib</a>.
       The colour mapping can be changed with a mouse-click on the upper left colour chart in the viewer area of a
       displayed dataset. This brings up the Colour gradient maps dialog shown below:
@@ -368,6 +369,8 @@
     <!----------------------------------------------------------------------------->
 
     <h5 class="mt-5">How to change size of displayed reflections</h5>
+    This is done from the Details tab by selecting the Sizing tab beneath the table of datasets.
+    <br />
 
     <p>
       The size of each reflection is a function of its associated data value. Similar to colour mapping
@@ -417,7 +420,10 @@
     <!----------------------------------------------------------------------------->
 
     <a name="expand_reflections"></a>
-    <h3 class="mt-4">How to expand reflections</h3>
+    <h3 class="mt-4">Expansion, Slicing and Binning of reflections</h3>
+    These operations are all done from the Details tab by selecting the appropriate tab beneath the table of datasets.
+
+    <h5 class="mt-4">How to expand reflections</h5>
     <p>
       Merged reflection data is usually stored with only the reflections that are unique under symmetry
       operations, meaning that no more than one data value is associated with an HKL index after symmetry
@@ -447,7 +453,7 @@
 
     <!----------------------------------------------------------------------------->
 
-    <h3 class="mt-5">How to slice reflections</h3>
+    <h5 class="mt-5">How to slice reflections</h5>
     The easiest way to slice reflections is to press the "Show plane of Intensities" or "Show plane of amplitudes"
     button on the "Quick View" tab and then desired direction in which to slice the reflection on the adjacent
     drop down button. This will only slice reflections of datasets with amplitudes or intesities if present
@@ -490,7 +496,7 @@
     the sphere of reflections in a in a well defined manner and slice it with a clip plane.
     <!----------------------------------------------------------------------------->
 
-    <h3 class="mt-5">How to sort reflections into bins</h3>
+    <h5 class="mt-5">How to sort reflections into bins</h5>
 
     <p>
       From the Binning tab that is found below the table of datasets on the Details tab a data set can be 
@@ -564,7 +570,7 @@
 
     <!----------------------------------------------------------------------------->
     <a name="vectors_tab"></a>
-    <h3 class="mt-5">How to display space group rotation operators and other vectors</h3>
+    <h3 class="mt-5">How to display spacegroup rotation operators and other vectors</h3>
 
     <!----------------------------------------------------------------------------->
 
@@ -817,6 +823,17 @@
       Avoid using a for-loop or list comprehension over all elements in a
       flex array in the python script.
     </p>
+    <!----------------------------------------------------------------------------->
+
+    <h5 class="mt-4">Further API details</h5>
+
+    <p>
+      There are many more functions available from the
+      <a href="https://cctbx.github.io/cctbx/cctbx.miller.html#the-miller-array">cctbx.miller.array</a> class.
+      Details about flex arrays can be found <a href="https://cctbx.github.io/scitbx/scitbx.array_family.html">here</a>
+      and <a href="http://cci.lbl.gov/docs/cctbx/doc_low_flex_array/">here</a>.
+    </p>
+
 
     <!----------------------------------------------------------------------------->
 
@@ -859,17 +876,6 @@
       The tabulated datasets will remain unchanged when the displayed reflections are transformed by expanding to
       Friedel mates, P1 or lower symmetry spacegroups. This also means that double clicking a symmetry copy generated from
       expanding the dataset to P1 or Friedel mates will only retrieve the original HKL index and its data value in the table.
-    </p>
-
-    <!----------------------------------------------------------------------------->
-
-    <h3 class="mt-4">Further API details</h3>
-
-    <p>
-      There are many more functions available from the
-      <a href="https://cctbx.github.io/cctbx/cctbx.miller.html#the-miller-array">cctbx.miller.array</a> class.
-      Details about flex arrays can be found <a href="https://cctbx.github.io/scitbx/scitbx.array_family.html">here</a>
-      and <a href="http://cci.lbl.gov/docs/cctbx/doc_low_flex_array/">here</a>.
     </p>
 
 
