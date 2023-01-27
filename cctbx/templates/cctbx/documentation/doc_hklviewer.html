@@ -913,13 +913,12 @@
         This is only available if <code>phil_file=&lt;filename&gt;</code> has also been specified. Useful for debugging.
       </li>
       <li>
-       <code>verbose=&lt;[1;4],threadingmsg,frustum,angles,vector,orientmsgm,browser&gt;</code> 
+       <code>verbose=&lt;[1;4],some_strings&gt;</code> 
         Instruct HKLviewer to print more or less verbose information with a combination of
-        keywords and or numbers. verbose=0 prints the least information whereas verbose=4 prints overly detailed
-        information when using the HKLviewer. If verbose=&lt;some_string&gt; which is a concatenation of 
-        one or more of the strings &lt;threadingmsg,frustum,angles,vector,orientmsgm,browser&gt; this will print 
-        debugging information related to semaphores guarding threads, visible reflection indices, 
-        imposed rotation angles, current orientation matrix and messages from the webbrowser respectively.
+        numbers and or strings. verbose=0 prints the least information whereas verbose=4 prints overly detailed
+        information when using the HKLviewer. <code>&lt;some_string&gt;</code> may be a concatenation of 
+        one or more of the strings "threadingmsg", "frustum", "angles", "vector", "orientmsgm", "browser".
+        This will print additional specific debugging information during use.
       </li>
 
     </ul>
