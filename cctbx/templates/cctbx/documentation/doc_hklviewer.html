@@ -200,7 +200,7 @@
 
     The PHIL parameter string must be enclosed with triple quotation marks to allow it spanning multiple lines.
     A unique stringID, say "FriedelBtn" as wells as a text string to display next to the button,
-    say "Expand Friedel pairs", must also be provided.
+    say "Show Friedel pairs of Amplitudes", must also be provided.
     <a name="hkl_viewer_buttons_py_file"></a>
     These two tuple elements come before the PHIL parameters string.
   </p>
@@ -211,8 +211,7 @@
   <p>
     When the HKLviewer is restarted with this file present as .hkl_viewer_buttons.py in the user's HOME directory
     buttons defined in this file will appear on the "Quick View" tab encircled with a green pen as
-    illustrated below. In this example, besides the "Expand Friedel pairs" button a "Show SigI" button
-    has also been defined and is shown as well.
+    illustrated below. 
   </p>
 
   <img style="max-width: 70%;" src="{% static 'cctbx/img/hklviewer/user_preset_btn_loaded.png' %}">
@@ -288,9 +287,9 @@
   tab for visualising the TNCS modulation through the TEPS data which is very sensitive.
   <br />
   Above is a snapshot of the buttons available (blue bubble) if there is TNCS in the dataset analysed by Xtricorder.
-  These are buttons are for visualising reflections with information content less than 0.35 bits, for
-  for visualising anisotropy and for visualising TNCS correction terms. Reflections with information less
-  than 0.35 bits roughly corresponds to I/SigI&lt;2 but reflections with low I/SigI values may occasionally have
+  These are buttons are for visualising reflections with information content less than 0.35 bits, 
+  for visualising anisotropy and TNCS correction terms. Reflections with information less
+  than 0.35 bits roughly corresponds to I/SigI&lt;1 but reflections with low I/SigI values may occasionally have
   high information content.
   A tutorial on how to inspect TNCS modulation in a dataset is given in the
   <a href="../tuto_hklviewer/#inspecting_TNCS_modulation">tutorial section</a>.
