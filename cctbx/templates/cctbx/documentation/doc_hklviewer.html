@@ -211,7 +211,7 @@
   <p>
     When the HKLviewer is restarted with this file present as .hkl_viewer_buttons.py in the user's HOME directory
     buttons defined in this file will appear on the "Quick View" tab encircled with a green pen as
-    illustrated below. 
+    illustrated below.
   </p>
 
   <img style="max-width: 70%;" src="{% static 'cctbx/img/hklviewer/user_preset_btn_loaded.png' %}">
@@ -287,7 +287,7 @@
   tab for visualising the TNCS modulation through the TEPS data which is very sensitive.
   <br />
   Above is a snapshot of the buttons available (blue bubble) if there is TNCS in the dataset analysed by Xtricorder.
-  These are buttons are for visualising reflections with information content less than 0.35 bits, 
+  These are buttons are for visualising reflections with information content less than 0.35 bits,
   for visualising anisotropy and TNCS correction terms. Reflections with information less
   than 0.35 bits roughly corresponds to I/SigI&lt;1 but reflections with low I/SigI values may occasionally have
   high information content.
@@ -355,9 +355,9 @@
   \(f(x)\) as defined will take on values between 0 and 1. It is then mapped onto the array values of the colour
   gradient map chosen by the user. With \(x\) varying linearly between \(x_{min} \) and \(x_{max}\) and for \(p < 1\)
   the first part of the colour gradient array will be emphasized. If \(p > 1\) it will be the last part of the
-  colour gradient array. Some data types such as intensities are better viewed with a value of \(p\) that 
+  colour gradient array. Some data types such as intensities are better viewed with a value of \(p\) that
   is smaller than 1. Other data types, like figure of merits are best viewed with a linear mapping between
-   colours and the data values, i.e.  \(p\) should be set to 1. Below
+  colours and the data values, i.e.  \(p\) should be set to 1. Below
   is an illustration of how different power factors affects the resultant colour mapping when the matplotlib colour
   scheme brg has been chosen as a gradient map.</p>
 
@@ -420,12 +420,13 @@
   <h3 class="mt-4">Expansion, Slicing and Binning of reflections</h3>
   These operations are all done from the Details tab by selecting the appropriate tab beneath the table of datasets.
 
-  <h5 class="mt-4">How to expand reflections</h5>
+  <h5 class="mt-4">How to expand reflections to P1 and Friedel mates</h5>
   <p>
     Merged reflection data is usually stored with only the reflections that are unique under symmetry
     operations, meaning that no more than one data value is associated with an HKL index after symmetry
     operations associated with the space group
-    have been applied. This subset of the recorded reflections are for convenience stored in the same wedge of the sphere
+    have been applied. This subset of the recorded reflections are for convenience stored in the same asymmetric unit
+    wedge of the sphere
     of all reflections. For the P1 space group the wedge will be shaped as a half-sphere given that reflections present in
     such a wedge are the minimum number of reflections necessary for a complete (up to a given resolution) P1 data set,
     disregarding Friedel mates. For a high symmetry spacegroup such as a cubic spacegroup the wedge of reflections will
@@ -436,8 +437,26 @@
     including Friedel mates. This is done by ticking the "Expand reflections" checkbox on the "Expansion"
     tab. This will apply the spacegroup rotations to all reflections and display them. If the reflection data file
     does contain reflections that are not unique under symmetry only the option of P1 expansion will be available.
+
   </p>
 
+
+  <h5 class="mt-5">Expanding reflections to a subgroup of the spacegroup</h5>
+  <p>
+    It is also possible to expand reflections only to a subgroup of the spacegroup of the dataset displayed. This is
+    done by selecting a particular subgroup from the dropdown list. All datasets in the file will expand their reflections to
+    the selected subgroup visually. If the button "Commit expansion" is pressed then the expansion will be actioned on all
+    datasets irreversibly as illustrated below.
+
+  </p>
+
+  <img style="max-width: 100%;" src="{% static 'cctbx/img/hklviewer/subgroup.png' %}">
+  <p>
+    These may then be saved into a new reflection file if desired.
+
+  </p>
+
+  <h5 class="mt-5">How to show missing or systematically absent reflections</h5>
   <p>
     It is also possible to display "Missing reflections". These are the reflections that should have been present up to
     the resolution limit of the data set (i.e. the reflection recorded with the highest resolution) but are absent, say due
@@ -564,6 +583,17 @@
     objects when displayed semitransparently. If opacity is set below 0.3 reflections will not respond to hovering
     or clicking with the mouse.
   </p>
+
+
+  <h5 class="mt-5">Creating a new dataset from visible reflections of the currently displayed dataset</h5>
+
+  <p class="mt-3">
+    The currently visible reflections obtained from binning may be used for creating a new dataset.
+    This is done by pressing the “Add visible reflections as new dataset” which prompts the user to provide
+    a label for the new dataset. This dataset will then be added to the bottom on the list of datasets on the
+    “Details” tab as illustrated below.
+  </p>
+  <img style="max-width: 100%;" src="{% static 'cctbx/img/hklviewer/newFoodata.png' %}">
 
   <!----------------------------------------------------------------------------->
   <a name="vectors_tab"></a>
@@ -837,8 +867,8 @@
   <h3 class="mt-4">Saving datasets</h3>
 
   <p>
-    Once new datasets have been created it is possible to save these from the File menu by clicking the
-    "Save Reflection File" item. Supported file formats are MTZ and CIF. If a reflection file contains unmerged data
+    It is possible to save one or more datasets these by clicking the “File | Save Highlighted datasets…” menu item.
+    Supported file formats are MTZ and CIF. If a reflection file contains unmerged data
     with multiple values for one or more indices each dataset will be saved in separate CIF files. Currently it is not
     possible to save unmerged data in the MTZ format.
   </p>
